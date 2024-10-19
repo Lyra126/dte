@@ -55,8 +55,8 @@ const Login = ({ onLogin, ...props }) => {
                 <Text style={{fontSize: 37}}> ← </Text>
             </TouchableOpacity>
             <View style = {styles.loginInformation}>
-            <Text style={styles.welcomeBack}>Welcome Back! 👋  </Text>
-            <Text style = {styles.welcomeText}>We're so glad to see you again! </Text>
+            <Text style={styles.welcomeBack}>Welcome Back! </Text>
+            <Text style = {styles.welcomeText}>We're happy to see you again! </Text>
                 <View style={styles.inputView}>
                     <View style={styles.inputSection}>
                         <FontAwesome name="envelope" size={20} color="#000" />

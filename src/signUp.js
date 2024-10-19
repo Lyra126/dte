@@ -93,8 +93,8 @@ const SignUp = ({ onLogin, ...props }) => {
                 <Text style={{fontSize: 37}}> ← </Text>
             </TouchableOpacity>
             <View style = {styles.loginInformation}>
-                <Text style={styles.welcomeBack}>Let's get started!</Text>
-                <Text style = {styles.welcomeText}>Just a few more steps until you join our family!</Text>
+                <Text style={styles.welcomeBack}>Begin Your Journey</Text>
+                <Text style = {styles.welcomeText}>Just a few more steps to join our community</Text>
                 <View style={styles.inputView}>
                     <View style={styles.inputSection}>
                         <Ionicons name="person" size={20} color="#000" />
@@ -197,6 +197,7 @@ const styles = StyleSheet.create({
         marginBottom: 15,
     },
     welcomeText: {
+        color: 'grey',
         fontSize: 16,
 
     },
