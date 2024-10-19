@@ -7,16 +7,17 @@ import globalStyles from "./styles/globalStyles";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import axios from 'axios'; 
 import Navigation from "../Navigation"
+import Config from 'react-native-config';
 
 const Login = ({ onLogin, ...props }) => {
     const navigation = useNavigation();
     const [email,setEmail]=  useState("");
     const [password,setPassword]=  useState("");
     const [error, setError] = useState("");
-    
     const handleSignIn = () =>{
         setError("");
-        axios.get(`http://192.168.1.159:8080/users/get?email=${email}&password=${password}`)
+           
+        axios.get(`http://10.136.227.124:8080/users/getUser?email=${email}`)
         .then((response) => {
             const userData = response.data;
             if (userData) {

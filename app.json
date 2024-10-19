@@ -1,0 +1,11 @@
+{
+    "expo": {
+        "name": "dte",
+        "slug": "slug",
+        "sdkVersion": "51.0.0",
+        "extra": {
+        "BASE_URL": "http://10.136.227.124:8080"
+      }
+    }
+  }
+  

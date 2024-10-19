@@ -47,7 +47,7 @@ const SignUp = ({ onLogin, ...props }) => {
                 } else {
                     console.log("user doesn't exist");
                     // User not found, create a new user
-                    axios.post('http://192.168.1.159:8080/users/createUser', {
+                    axios.post('http://10.136.227.124:8080/users/createUser', {
                         tree_type: fruitTree,
                         email_address: email,
                         name: name,
