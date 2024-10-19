@@ -67,7 +67,7 @@ const SIZE = 100.0;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#e8efdd',
         alignItems: 'center',
         justifyContent: 'center',
     },

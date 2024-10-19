@@ -32,7 +32,7 @@ const PromptLoginSignUp = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#e8efdd',
         padding: 40,
     },
     image: {

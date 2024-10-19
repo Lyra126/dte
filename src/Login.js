@@ -108,13 +108,13 @@ const Login = ({ onLogin, ...props }) => {
             </View>
 
             <View style={styles.mediaIcons}>
-                <View style={[styles.icons, {backgroundColor: '#e5e5e5'}]}>
+                <View style={[styles.icons, {backgroundColor: '#fffff7'}]}>
                     <Image
                         source={{uri: 'https://img.icons8.com/?size=100&id=17949&format=png&color=000000'}}
                         style={{width: 40, height: 40}}
                     />
                 </View>
-                <View style={[styles.icons, {backgroundColor: '#e5e5e5'}]}>
+                <View style={[styles.icons, {backgroundColor: '#fffff7'}]}>
                     <AntDesign name="apple1" size={35} color="black" />
                 </View>
             </View>
@@ -132,14 +132,14 @@ const Login = ({ onLogin, ...props }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#8bc7e0',
+        backgroundColor: '#8ec5e0',
         padding: 40,
     },
     backButton: {
         marginLeft: 20,
     },
     loginInformation: {
-       backgroundColor: 'white',
+       backgroundColor: '#e8efdd',
         height: '100%',
         borderRadius: 30,
         paddingTop: 50,
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        backgroundColor: '#eaeaea',
+        backgroundColor: '#fffff7',
         borderRadius: 20,
         paddingHorizontal: 20,
     },
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
         height : 50,
         width : "80%",
         paddingHorizontal : 20,
-        backgroundColor: "#eaeaea",
+        backgroundColor: "#fffff7",
         borderRadius: 20
     },
     forgotPasswordView : {
@@ -187,10 +187,10 @@ const styles = StyleSheet.create({
     },
     forgetText : {
         fontSize : 13,
-        color : "#597a9f"
+        color : "#335727"
     },
     button : {
-        backgroundColor : "#7dbbd7",
+        backgroundColor : "#96c08e",
         height : 45,
         width : "100%",
         borderRadius : 20,
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
         color : "gray",
     },
     signup : {
-        color : "#8bc7e0",
+        color : "#517083",
         textAlign: "center",
         fontWeight : "bold",
     },
