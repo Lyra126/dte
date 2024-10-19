@@ -15,7 +15,9 @@ const CenterHome = ({ route }) => {
     const [hasCheckedIn, setHasCheckedIn] = useState(false);
     const [selectedResponses, setSelectedResponses] = useState({});
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const [currentDate, setCurrentDate] = useState('');
 
+    // fonts
     const [fontsLoaded] = useFonts({
         'Outfit-Regular': require('./fonts/Outfit/Outfit-Regular.ttf'),
         'Outfit-Bold': require('./fonts/Outfit/Outfit-Bold.ttf'),
@@ -25,7 +27,6 @@ const CenterHome = ({ route }) => {
         'Gabarito-Bold': require('./fonts/Gabarito/Gabarito-Bold.ttf'),
 
     });
-
     useEffect(() => {
         if (fontsLoaded) {
             SplashScreen.hideAsync(); // Hide splash screen once fonts are loaded
@@ -36,6 +37,7 @@ const CenterHome = ({ route }) => {
         await SecureStore.setItemAsync(key, value);
     };
 
+    // login information
     useEffect(() => {
         if (route.params) {
             const { email } = route.params;
@@ -63,6 +65,9 @@ const CenterHome = ({ route }) => {
         console.log("User Responses: ", selectedResponses);
     };
 
+    // getting date (API)
+
+    // options for quiz
     const handleOptionSelect = (questionId, response) => {
         setSelectedResponses(prevState => ({
             ...prevState,
@@ -75,12 +80,15 @@ const CenterHome = ({ route }) => {
         }
     };
 
+    // rendering check in content
     const renderCheckInContent = () => {
         if (hasCheckedIn) {
             return (
                 <View style={styles.checkInOutputs}>
-                    <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'black', fontFamily: 'Gabarito-Bold'}}>Today's Insights</Text>
-                    <Text style={{ fontSize: 14, color: 'grey', marginTop: 10 }}>You have checked in for the day! Keep up the great work!</Text>
+                    <Text style={{ fontSize: 23, fontWeight: 'bold', color: 'black', fontFamily: 'Gabarito-Bold'}}>Today's Insights</Text>
+                    <Text style={{ fontSize: 14, color: 'grey', marginTop: 10 }}>
+                        You have checked in for the day! Keep up the great work!
+                    </Text>
                 </View>
             );
         } else {
@@ -115,8 +123,8 @@ const CenterHome = ({ route }) => {
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <View style={styles.headerView}>
                     <View style={styles.textContainer}>
-                        <Text>Welcome Back</Text>
-                        <Text style={{ fontSize: 30, fontWeight: 'bold', fontFamily: 'Gabarito-Bold' }}>Testing User</Text>
+                        <Text style={{fontFamily: 'Gabarito-Regular', fontSize: 18}}>Welcome Back</Text>
+                        <Text style={{fontSize: 30, fontWeight: 'bold', fontFamily: 'Gabarito-Bold' }}>Testing User</Text>
                     </View>
                     <Image
                         source={require('./assets/earthDay.gif')}
@@ -125,13 +133,14 @@ const CenterHome = ({ route }) => {
                 </View>
                 <View style={styles.todayView}>
                     <View style={[styles.todayViewText]}>
-                        <Text style={{ fontFamily: 'Gabarito-Bold', color: '#FFFFFF', fontSize: 20, fontWeight: 'bold' }}>October 19th, 2024</Text>
-                        <Text style={{ fontFamily: 'Gabarito-Regular',color: '#FFFFFF', fontSize: 17 }}>28 days postpartum</Text>
+                        <Text style={{ fontFamily: 'Gabarito-Bold', color: '#FFFFFF', fontSize: 23, fontWeight: 'bold' }}>October 19th, 2024</Text>
+                        <Text style={{ fontFamily: 'Gabarito-Regular',color: '#FFFFFF', fontSize: 18 }}>28 days postpartum</Text>
                         <Text style={{ color: '#FFFFFF', fontSize: 12, marginTop: '4%' }}>You are strong, capable, and doing an amazing job. Be gentle with yourself—you're exactly what your baby needs.</Text>
                     </View>
                 </View>
+
+                <Text style={{fontFamily: 'Outfit-Regular',marginLeft: 15, marginBottom: -12, fontSize: 20, color: '#475646'}}> Daily Check-In</Text>
                 <View style={styles.checkInView}>
-                    <Text style={{ marginLeft: 15, marginBottom: -12, fontSize: 17, color: 'grey'}}> Daily Check-In</Text>
                     <View style={styles.checkInViewText}>
                         {renderCheckInContent()}
                     </View>
@@ -144,7 +153,7 @@ const CenterHome = ({ route }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#efe9dd',
+        backgroundColor: '#e8efdd',
         fontFamily: 'Outfit-Regular',
     },
     scrollContainer: {
@@ -169,11 +178,10 @@ const styles = StyleSheet.create({
         borderRadius: 50,
     },
     checkInView: {
-        height: '70%',
+        height: '58%',
         backgroundColor: '#ffffff',
         borderRadius: 20,
         justifyContent: 'flex-start',
-        paddingTop: '4%',
         flexDirection: 'column',
         shadowColor: "#837356",
         shadowOffset: {
@@ -193,7 +201,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Gabarito-Regular',
         borderRadius: 20,
         flexDirection: 'column',
-        height: '20%',
+        height: '150px',
         shadowColor: "#2c8591",
         shadowOffset: {
             width: 0,
@@ -202,40 +210,47 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         marginRight: 15,
         marginLeft: 15,
+        paddingHorizontal: 10,
     },
     todayViewText: {
         width: '100%',
         color: "#FFFFFF",
         padding: 15,
     },
-    checkInQuiz: {
-        paddingVertical: 20,
-    },
     checkInOutputs: {
-        paddingVertical: 20,
+        paddingHorizontal: 10,
     },
     questionContainer: {
         marginBottom: 20,
+        marginTop: -10,
+        padding: 15,
+        borderRadius: 25,
     },
     questionText: {
         fontSize: 17,
         fontWeight: 'bold',
         marginBottom: 10,
         textAlign: 'center',
+        fontFamily: 'Outfit-Medium',
     },
     optionsContainer: {
         flexDirection: 'column',
         paddingLeft: 20,
         paddingRight: 20,
+        gap: 5
     },
     optionButton: {
-        backgroundColor: '#d9dfe1',
         padding: 10,
         borderRadius: 20,
         marginBottom: 5,
+        borderWidth: 1,
+        borderColor: 'rgba(122,119,119,0.35)',
     },
+
     optionText: {
         fontSize: 16,
+        fontFamily: 'Gabarito-Regular',
+        textAlign: 'center',
     },
     quizButton: {
         backgroundColor: '#2c8591',
