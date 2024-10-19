@@ -16,8 +16,7 @@ const PromptLoginSignUp = () => {
 
     return (
         <SafeAreaView style={[globalStyles.AndroidSafeArea, styles.container]}>
-            <Image source={require('./assets/babyAndMother.png')} style={styles.image}>
-            </Image>
+            <Image source={require('./assets/babyAndMother.png')} style={styles.image}></Image>
             <Text style={styles.welcometext}>Welcome to CARE</Text>
             <Text style={styles.text}>Postpartum support with health tracking, self-care tips, and mental wellness.</Text>
             <TouchableOpacity style={styles.loginButton} onPress={() => {navigation.navigate('Login')}}>
