@@ -1,0 +1,274 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "How are you feeling physically today?",
+      "options": [
+        {
+          "emoji": "😊",
+          "label": "Great",
+          "response": "User is feeling physically great today."
+        },
+        {
+          "emoji": "😌",
+          "label": "Good",
+          "response": "User is feeling physically good today."
+        },
+        {
+          "emoji": "😐",
+          "label": "Okay",
+          "response": "User is feeling physically okay today."
+        },
+        {
+          "emoji": "😞",
+          "label": "Tired",
+          "response": "User is feeling physically tired today."
+        },
+        {
+          "emoji": "😖",
+          "label": "In pain",
+          "response": "User is experiencing physical pain today."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "question": "How is your mood right now?",
+      "options": [
+        {
+          "emoji": "😁",
+          "label": "Happy",
+          "response": "User is feeling happy today."
+        },
+        {
+          "emoji": "🙂",
+          "label": "Content",
+          "response": "User is feeling content today."
+        },
+        {
+          "emoji": "😕",
+          "label": "A bit down",
+          "response": "User is feeling a bit down today."
+        },
+        {
+          "emoji": "😢",
+          "label": "Sad",
+          "response": "User is feeling sad today."
+        },
+        {
+          "emoji": "😠",
+          "label": "Frustrated",
+          "response": "User is feeling frustrated today."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "question": "How much rest did you get last night?",
+      "options": [
+        {
+          "emoji": "😴",
+          "label": "Enough",
+          "response": "User got enough rest last night."
+        },
+        {
+          "emoji": "😌",
+          "label": "Some",
+          "response": "User got some rest last night."
+        },
+        {
+          "emoji": "😫",
+          "label": "Not enough",
+          "response": "User did not get enough rest last night."
+        },
+        {
+          "emoji": "😵",
+          "label": "Barely any",
+          "response": "User barely got any rest last night."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "question": "How is your energy level today?",
+      "options": [
+        {
+          "emoji": "⚡",
+          "label": "Energized",
+          "response": "User is feeling energized today."
+        },
+        {
+          "emoji": "🙂",
+          "label": "Normal",
+          "response": "User has a normal energy level today."
+        },
+        {
+          "emoji": "😴",
+          "label": "Low",
+          "response": "User is feeling low on energy today."
+        },
+        {
+          "emoji": "🪫",
+          "label": "Exhausted",
+          "response": "User is feeling exhausted today."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "question": "How are you finding feeding your baby?",
+      "options": [
+        {
+          "emoji": "🍼",
+          "label": "Smooth",
+          "response": "User finds feeding the baby to be smooth."
+        },
+        {
+          "emoji": "🙂",
+          "label": "Manageable",
+          "response": "User finds feeding the baby to be manageable."
+        },
+        {
+          "emoji": "😟",
+          "label": "Challenging",
+          "response": "User finds feeding the baby to be challenging."
+        },
+        {
+          "emoji": "😩",
+          "label": "Overwhelming",
+          "response": "User finds feeding the baby to be overwhelming."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "question": "How is your appetite today?",
+      "options": [
+        {
+          "emoji": "🍽️",
+          "label": "Normal",
+          "response": "User's appetite is normal today."
+        },
+        {
+          "emoji": "😋",
+          "label": "Increased",
+          "response": "User's appetite is increased today."
+        },
+        {
+          "emoji": "😐",
+          "label": "Decreased",
+          "response": "User's appetite is decreased today."
+        },
+        {
+          "emoji": "🤢",
+          "label": "No appetite",
+          "response": "User has no appetite today."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "question": "How supported do you feel today?",
+      "options": [
+        {
+          "emoji": "🤗",
+          "label": "Very supported",
+          "response": "User feels very supported today."
+        },
+        {
+          "emoji": "🙂",
+          "label": "Somewhat supported",
+          "response": "User feels somewhat supported today."
+        },
+        {
+          "emoji": "😕",
+          "label": "A bit lonely",
+          "response": "User feels a bit lonely today."
+        },
+        {
+          "emoji": "😔",
+          "label": "Isolated",
+          "response": "User feels isolated today."
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "question": "How are you bonding with your baby?",
+      "options": [
+        {
+          "emoji": "❤️",
+          "label": "Strong bond",
+          "response": "User feels a strong bond with their baby."
+        },
+        {
+          "emoji": "🙂",
+          "label": "Getting closer",
+          "response": "User is getting closer to their baby."
+        },
+        {
+          "emoji": "😐",
+          "label": "Neutral",
+          "response": "User feels a neutral bond with their baby."
+        },
+        {
+          "emoji": "😞",
+          "label": "Struggling",
+          "response": "User is struggling to bond with their baby."
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "question": "Have you been able to take time for self-care today?",
+      "options": [
+        {
+          "emoji": "🌸",
+          "label": "Yes, definitely",
+          "response": "User has been able to take time for self-care today."
+        },
+        {
+          "emoji": "🙂",
+          "label": "A little",
+          "response": "User has been able to take a little time for self-care today."
+        },
+        {
+          "emoji": "😔",
+          "label": "Not really",
+          "response": "User has not been able to take time for self-care today."
+        },
+        {
+          "emoji": "😩",
+          "label": "Not at all",
+          "response": "User has not had any self-care time today."
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "question": "How is your pain level today?",
+      "options": [
+        {
+          "emoji": "😊",
+          "label": "No pain",
+          "response": "User is experiencing no pain today."
+        },
+        {
+          "emoji": "😌",
+          "label": "Mild",
+          "response": "User is experiencing mild pain today."
+        },
+        {
+          "emoji": "😟",
+          "label": "Moderate",
+          "response": "User is experiencing moderate pain today."
+        },
+        {
+          "emoji": "😖",
+          "label": "Severe",
+          "response": "User is experiencing severe pain today."
+        }
+      ]
+    }
+  ]
+}
