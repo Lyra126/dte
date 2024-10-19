@@ -174,15 +174,13 @@ const SignUp = ({ onLogin, ...props }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#6fbb58',
+        backgroundColor: '#8bc7e0',
         padding: 40,
     },
     backButton: {
         marginLeft: 20,
     },
-    selectedTreeButton: {
-        backgroundColor: '#65c500', // color for selected button
-    },
+
     loginInformation: {
         backgroundColor: 'white',
 
@@ -228,7 +226,7 @@ const styles = StyleSheet.create({
         borderRadius: 20
     },
     button : {
-        backgroundColor : "#62af49",
+        backgroundColor : "#81c7e3",
         height : 45,
         width : "100%",
         borderRadius : 20,
@@ -275,7 +273,7 @@ const styles = StyleSheet.create({
         color : "gray",
     },
     signup : {
-        color : "#65b439",
+        color : "#8bc7e0",
         textAlign: "center",
         fontWeight : "bold",
 
@@ -288,22 +286,6 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 15,
         marginBottom: 10,
-    },
-    treeButtonsContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 10,
-    },
-    treeButton: {
-        backgroundColor: '#65c500',
-        borderRadius: 10,
-        padding: 10,
-        marginRight: 10
-    },
-    treeImage: {
-        width: 40,
-        height: 40,
-        resizeMode: 'contain',
     },
     errorText: {
         color: 'red',

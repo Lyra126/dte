@@ -16,8 +16,10 @@ const PromptLoginSignUp = () => {
 
     return (
         <SafeAreaView style={[globalStyles.AndroidSafeArea, styles.container]}>
-            <Text style={styles.welcometext}>Welcome to reWastify!</Text>
-            <Text style={styles.text}>Please login or sign up to continue</Text>
+            <Image source={require('./assets/babyAndMother.png')} style={styles.image}>
+            </Image>
+            <Text style={styles.welcometext}>Welcome to CARE</Text>
+            <Text style={styles.text}>Postpartum support with health tracking, self-care tips, and mental wellness.</Text>
             <TouchableOpacity style={styles.loginButton} onPress={() => {navigation.navigate('Login')}}>
                 <Text style={styles.loginText}>Login</Text>
             </TouchableOpacity>
@@ -37,21 +39,25 @@ const styles = StyleSheet.create({
     image: {
         width: '100%', // Use percentage to make the image responsive
         height: '30%', // Adjust as needed
-        marginTop: '38%',
+        marginTop: '30%',
     },
     welcometext: {
         fontSize: 20,
         textAlign: 'center',
         fontWeight: 'bold',
+        marginLeft: 40,
+        marginRight: 40
     },
     text:{
         fontSize: 16,
+        marginLeft: 40,
+        marginRight: 40,
         color: 'grey',
         textAlign: 'center',
         marginVertical: 20,
     },
     loginButton: {
-        backgroundColor: '#6fbb58',
+        backgroundColor: '#78bbd9',
         padding: 15,
         borderRadius: 15,
         marginVertical: 10,

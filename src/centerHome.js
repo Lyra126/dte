@@ -77,7 +77,6 @@ const CenterHome = ({route}) => {
                     </View>
                     <Image
                         style={styles.profileImage}
-                        source={require('./assets/Rachel Pu square.jpg')}
                     />
                 </View>
 
@@ -149,7 +148,7 @@ const styles = StyleSheet.create({
     treePreviewView: {
         height: 660,  // Adjust height if necessary
         padding: '4.5%',
-        backgroundColor: '#5f7046',
+        backgroundColor: '#8bc7e0',
         borderRadius: 20,
         justifyContent: 'flex-end',
         flexDirection: 'column',

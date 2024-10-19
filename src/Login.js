@@ -131,7 +131,7 @@ const Login = ({ onLogin, ...props }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#6fbb58',
+        backgroundColor: '#8bc7e0',
         padding: 40,
     },
     backButton: {
@@ -186,10 +186,10 @@ const styles = StyleSheet.create({
     },
     forgetText : {
         fontSize : 13,
-        color : "#7ead73"
+        color : "#597a9f"
     },
     button : {
-        backgroundColor : "#62af49",
+        backgroundColor : "#7dbbd7",
         height : 45,
         width : "100%",
         borderRadius : 20,
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
         color : "gray",
     },
     signup : {
-        color : "#65b439",
+        color : "#8bc7e0",
         textAlign: "center",
         fontWeight : "bold",
     },
