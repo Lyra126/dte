@@ -7,6 +7,7 @@ import * as SecureStore from 'expo-secure-store';
 import checkInQuiz from './checkInQuiz.json';
 import { useFonts } from "expo-font";
 import * as SplashScreen from 'expo-splash-screen';
+import Ionicons from 'react-native-vector-icons/Ionicons'; // Import icon library
 
 SplashScreen.preventAutoHideAsync(); // Prevent splash screen from hiding while fonts load
 
@@ -15,7 +16,6 @@ const CenterHome = ({ route }) => {
     const [hasCheckedIn, setHasCheckedIn] = useState(false);
     const [selectedResponses, setSelectedResponses] = useState({});
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [currentDate, setCurrentDate] = useState('');
 
     // fonts
     const [fontsLoaded] = useFonts({
@@ -25,8 +25,8 @@ const CenterHome = ({ route }) => {
         'Outfit-Medium': require('./fonts/Outfit/Outfit-Medium.ttf'),
         'Gabarito-Regular': require('./fonts/Gabarito/Gabarito-Regular.ttf'),
         'Gabarito-Bold': require('./fonts/Gabarito/Gabarito-Bold.ttf'),
-
     });
+
     useEffect(() => {
         if (fontsLoaded) {
             SplashScreen.hideAsync(); // Hide splash screen once fonts are loaded
@@ -65,7 +65,13 @@ const CenterHome = ({ route }) => {
         console.log("User Responses: ", selectedResponses);
     };
 
-    // getting date (API)
+    // reseting check in
+    const resetCheckIn = () => {
+        setHasCheckedIn(false);
+        setSelectedResponses({});
+        setCurrentQuestionIndex(0);
+        console.log("Check-In reset.");
+    };
 
     // options for quiz
     const handleOptionSelect = (questionId, response) => {
@@ -80,15 +86,44 @@ const CenterHome = ({ route }) => {
         }
     };
 
+    // Generating simplified summary
+    const generateSimplifiedSummary = () => {
+        const summaryItems = Object.keys(selectedResponses).map((questionId, index) => {
+            const question = checkInQuiz.questions.find(q => q.id === parseInt(questionId));
+            const option = question.options.find(opt => opt.response === selectedResponses[questionId]);
+
+            return (
+                <View key={index} style={styles.simplifiedSummaryItem}>
+                    <Text style={styles.simplifiedSummaryText}>{option.summary}</Text>
+                </View>
+            );
+        });
+
+        return (
+            <View style={styles.simplifiedSummaryContainer}>
+                {summaryItems}
+            </View>
+        );
+    };
+
     // rendering check in content
     const renderCheckInContent = () => {
         if (hasCheckedIn) {
             return (
                 <View style={styles.checkInOutputs}>
-                    <Text style={{ fontSize: 23, fontWeight: 'bold', color: 'black', fontFamily: 'Gabarito-Bold'}}>Today's Insights</Text>
-                    <Text style={{ fontSize: 14, color: 'grey', marginTop: 10 }}>
-                        You have checked in for the day! Keep up the great work!
+                    <View style={styles.insightHeader}>
+                        <Text style={{ fontSize: 23, fontWeight: 'bold', color: 'black', fontFamily: 'Gabarito-Bold'}}>Today's Insights</Text>
+                        <TouchableOpacity onPress={resetCheckIn} style={styles.resetButton}>
+                            <Ionicons name="refresh-circle-outline" size={28} color="#989898" />
+                        </TouchableOpacity>
+                    </View>
+                    <Text style={{ fontSize: 14, color: 'grey', marginTop: 5 }}>
+                        You have checked in for the day, great job!
                     </Text>
+                    {generateSimplifiedSummary()}
+                    <TouchableOpacity style = {styles.finishCheckInButton}>
+                        <Text style={styles.finishCheckInText}>View Today's Check-In</Text>
+                    </TouchableOpacity>
                 </View>
             );
         } else {
@@ -135,11 +170,11 @@ const CenterHome = ({ route }) => {
                     <View style={[styles.todayViewText]}>
                         <Text style={{ fontFamily: 'Gabarito-Bold', color: '#FFFFFF', fontSize: 23, fontWeight: 'bold' }}>October 19th, 2024</Text>
                         <Text style={{ fontFamily: 'Gabarito-Regular',color: '#FFFFFF', fontSize: 18 }}>28 days postpartum</Text>
-                        <Text style={{ color: '#FFFFFF', fontSize: 12, marginTop: '4%' }}>You are strong, capable, and doing an amazing job. Be gentle with yourself—you're exactly what your baby needs.</Text>
+                        <Text style={{ color: '#FFFFFF', fontSize: 12, marginTop: '3%' }}>You are strong, capable, and doing an amazing job. Be gentle with yourself—you're exactly what your baby needs.</Text>
                     </View>
                 </View>
 
-                <Text style={{fontFamily: 'Outfit-Regular',marginLeft: 15, marginBottom: -12, fontSize: 20, color: '#475646'}}> Daily Check-In</Text>
+                <Text style={{fontFamily: 'Outfit-Medium',marginLeft: 15, marginBottom: -12, fontSize: 20, color: '#475646'}}> Daily Check-In</Text>
                 <View style={styles.checkInView}>
                     <View style={styles.checkInViewText}>
                         {renderCheckInContent()}
@@ -220,6 +255,12 @@ const styles = StyleSheet.create({
     checkInOutputs: {
         paddingHorizontal: 10,
     },
+    insightHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+
     questionContainer: {
         marginBottom: 20,
         marginTop: -10,
@@ -246,19 +287,47 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'rgba(122,119,119,0.35)',
     },
-
     optionText: {
         fontSize: 16,
         fontFamily: 'Gabarito-Regular',
         textAlign: 'center',
     },
-    quizButton: {
-        backgroundColor: '#2c8591',
-        padding: 10,
+    simplifiedSummaryContainer: {
+        marginTop: 10,
         borderRadius: 10,
-        marginTop: 15,
-        alignSelf: 'center',
+        columnGap: 4,
+        elevation: 2,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'flex-start',
     },
+    simplifiedSummaryItem: {
+        backgroundColor: '#e8e8e8',
+        padding: 7,
+        borderRadius: 15,
+        marginVertical: 4,
+        shadowColor: "#000",
+        elevation: 1,
+    },
+    simplifiedSummaryText: {
+        fontSize: 13.5,
+        color: '#444',
+        fontFamily: 'Outfit-Regular',
+        textAlign: 'center',
+    },
+    finishCheckInButton: {
+        backgroundColor: '#a7c4a3',
+        padding: 10,
+        width: '100%',
+        borderRadius: 20,
+        marginTop: 15,
+    },
+    finishCheckInText: {
+        color: '#384d35',
+        fontSize: 18,
+        textAlign: 'center',
+        fontFamily: 'Gabarito-Regular',
+    }
 });
 
 export default CenterHome;

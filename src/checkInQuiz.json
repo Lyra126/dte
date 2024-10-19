@@ -7,27 +7,32 @@
         {
           "emoji": "😊",
           "label": "Great",
-          "response": "User is feeling physically great today."
+          "response": "User is feeling physically great today.",
+          "summary": "Physically great"
         },
         {
           "emoji": "😌",
           "label": "Good",
-          "response": "User is feeling physically good today."
+          "response": "User is feeling physically good today.",
+          "summary": "Physically good"
         },
         {
           "emoji": "😐",
           "label": "Okay",
-          "response": "User is feeling physically okay today."
+          "response": "User is feeling physically okay today.",
+          "summary": "Physically okay"
         },
         {
           "emoji": "😞",
           "label": "Tired",
-          "response": "User is feeling physically tired today."
+          "response": "User is feeling physically tired today.",
+          "summary": "Physically tired"
         },
         {
           "emoji": "😖",
           "label": "In pain",
-          "response": "User is experiencing physical pain today."
+          "response": "User is experiencing physical pain today.",
+          "summary": "Physical pain"
         }
       ]
     },
@@ -38,27 +43,32 @@
         {
           "emoji": "😁",
           "label": "Happy",
-          "response": "User is feeling happy today."
+          "response": "User is feeling happy today.",
+          "summary": "Happy today"
         },
         {
           "emoji": "🙂",
           "label": "Content",
-          "response": "User is feeling content today."
+          "response": "User is feeling content today.",
+          "summary": "Content today"
         },
         {
           "emoji": "😕",
           "label": "A bit down",
-          "response": "User is feeling a bit down today."
+          "response": "User is feeling a bit down today.",
+          "summary": "A bit down"
         },
         {
           "emoji": "😢",
           "label": "Sad",
-          "response": "User is feeling sad today."
+          "response": "User is feeling sad today.",
+          "summary": "Feeling sad"
         },
         {
           "emoji": "😠",
           "label": "Frustrated",
-          "response": "User is feeling frustrated today."
+          "response": "User is feeling frustrated today.",
+          "summary": "Feeling frustrated"
         }
       ]
     },
@@ -69,22 +79,26 @@
         {
           "emoji": "😴",
           "label": "Enough",
-          "response": "User got enough rest last night."
+          "response": "User got enough rest last night.",
+          "summary": "Got enough rest"
         },
         {
           "emoji": "😌",
           "label": "Some",
-          "response": "User got some rest last night."
+          "response": "User got some rest last night.",
+          "summary": "Some rest"
         },
         {
           "emoji": "😫",
           "label": "Not enough",
-          "response": "User did not get enough rest last night."
+          "response": "User did not get enough rest last night.",
+          "summary": "Not enough rest"
         },
         {
           "emoji": "😵",
           "label": "Barely any",
-          "response": "User barely got any rest last night."
+          "response": "User barely got any rest last night.",
+          "summary": "Barely any rest"
         }
       ]
     },
@@ -95,22 +109,26 @@
         {
           "emoji": "⚡",
           "label": "Energized",
-          "response": "User is feeling energized today."
+          "response": "User is feeling energized today.",
+          "summary": "Energized"
         },
         {
           "emoji": "🙂",
           "label": "Normal",
-          "response": "User has a normal energy level today."
+          "response": "User has a normal energy level today.",
+          "summary": "Normal energy level"
         },
         {
           "emoji": "😴",
           "label": "Low",
-          "response": "User is feeling low on energy today."
+          "response": "User is feeling low on energy today.",
+          "summary": "Low energy level"
         },
         {
           "emoji": "🪫",
           "label": "Exhausted",
-          "response": "User is feeling exhausted today."
+          "response": "User is feeling exhausted today.",
+          "summary": "Feeling exhausted"
         }
       ]
     },
@@ -121,22 +139,26 @@
         {
           "emoji": "🍼",
           "label": "Smooth",
-          "response": "User finds feeding the baby to be smooth."
+          "response": "User finds feeding the baby to be smooth.",
+          "summary": "Smooth feeding"
         },
         {
           "emoji": "🙂",
           "label": "Manageable",
-          "response": "User finds feeding the baby to be manageable."
+          "response": "User finds feeding the baby to be manageable.",
+          "summary": "Manageable feeding"
         },
         {
           "emoji": "😟",
           "label": "Challenging",
-          "response": "User finds feeding the baby to be challenging."
+          "response": "User finds feeding the baby to be challenging.",
+          "summary": "Challenging feeding"
         },
         {
           "emoji": "😩",
           "label": "Overwhelming",
-          "response": "User finds feeding the baby to be overwhelming."
+          "response": "User finds feeding the baby to be overwhelming.",
+          "summary": "Overwhelming feeding"
         }
       ]
     },
@@ -147,22 +169,26 @@
         {
           "emoji": "🍽️",
           "label": "Normal",
-          "response": "User's appetite is normal today."
+          "response": "User's appetite is normal today.",
+          "summary": "Normal appetite"
         },
         {
           "emoji": "😋",
           "label": "Increased",
-          "response": "User's appetite is increased today."
+          "response": "User's appetite is increased today.",
+          "summary": "Increased appetite"
         },
         {
           "emoji": "😐",
           "label": "Decreased",
-          "response": "User's appetite is decreased today."
+          "response": "User's appetite is decreased today.",
+          "summary": "Decreased appetite"
         },
         {
           "emoji": "🤢",
           "label": "No appetite",
-          "response": "User has no appetite today."
+          "response": "User has no appetite today.",
+          "summary": "No appetite"
         }
       ]
     },
@@ -173,22 +199,26 @@
         {
           "emoji": "🤗",
           "label": "Very supported",
-          "response": "User feels very supported today."
+          "response": "User feels very supported today.",
+          "summary": "Very supported"
         },
         {
           "emoji": "🙂",
           "label": "Somewhat supported",
-          "response": "User feels somewhat supported today."
+          "response": "User feels somewhat supported today.",
+          "summary": "Somewhat supported"
         },
         {
           "emoji": "😕",
           "label": "A bit lonely",
-          "response": "User feels a bit lonely today."
+          "response": "User feels a bit lonely today.",
+          "summary": "A bit lonely"
         },
         {
           "emoji": "😔",
           "label": "Isolated",
-          "response": "User feels isolated today."
+          "response": "User feels isolated today.",
+          "summary": "Feeling isolated"
         }
       ]
     },
@@ -199,22 +229,26 @@
         {
           "emoji": "❤️",
           "label": "Strong bond",
-          "response": "User feels a strong bond with their baby."
+          "response": "User feels a strong bond with their baby.",
+          "summary": "Strong baby bond"
         },
         {
           "emoji": "🙂",
           "label": "Getting closer",
-          "response": "User is getting closer to their baby."
+          "response": "User is getting closer to their baby.",
+          "summary": "Getting closer to baby"
         },
         {
           "emoji": "😐",
           "label": "Neutral",
-          "response": "User feels a neutral bond with their baby."
+          "response": "User feels a neutral bond with their baby.",
+          "summary": "Neutral baby bond"
         },
         {
           "emoji": "😞",
           "label": "Struggling",
-          "response": "User is struggling to bond with their baby."
+          "response": "User is struggling to bond with their baby.",
+          "summary": "Struggling to bond"
         }
       ]
     },
@@ -225,22 +259,26 @@
         {
           "emoji": "🌸",
           "label": "Yes, definitely",
-          "response": "User has been able to take time for self-care today."
+          "response": "User has been able to take time for self-care today.",
+          "summary": "Had self-care time"
         },
         {
           "emoji": "🙂",
           "label": "A little",
-          "response": "User has been able to take a little time for self-care today."
+          "response": "User has been able to take a little time for self-care today.",
+          "summary": "A little self-care"
         },
         {
           "emoji": "😔",
           "label": "Not really",
-          "response": "User has not been able to take time for self-care today."
+          "response": "User has not been able to take time for self-care today.",
+          "summary": "No self-care time"
         },
         {
           "emoji": "😩",
           "label": "Not at all",
-          "response": "User has not had any self-care time today."
+          "response": "User has not had any self-care time today.",
+          "summary": "No self-care at all"
         }
       ]
     },
@@ -251,22 +289,26 @@
         {
           "emoji": "😊",
           "label": "No pain",
-          "response": "User is experiencing no pain today."
+          "response": "User is experiencing no pain today.",
+          "summary": "No pain"
         },
         {
           "emoji": "😌",
           "label": "Mild",
-          "response": "User is experiencing mild pain today."
+          "response": "User is experiencing mild pain today.",
+          "summary": "Mild pain"
         },
         {
           "emoji": "😟",
           "label": "Moderate",
-          "response": "User is experiencing moderate pain today."
+          "response": "User is experiencing moderate pain today.",
+          "summary": "Moderate pain"
         },
         {
           "emoji": "😖",
           "label": "Severe",
-          "response": "User is experiencing severe pain today."
+          "response": "User is experiencing severe pain today.",
+          "summary": "Severe pain"
         }
       ]
     }
