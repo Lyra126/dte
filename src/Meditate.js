@@ -8,7 +8,6 @@ const defaultMeditationPhases = [
     { name: 'Shallow Breaths', duration: 2 }, // duration in seconds
     { name: 'Rest', duration: 3 }, // duration in seconds
   ];
-
 const Meditate = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentPhase, setCurrentPhase] = useState(0);

@@ -51,4 +51,4 @@ async function generateSleep(prompt) {
   return text;
 }
 
-export default generateExercise;
+export default generateMeditation;
