@@ -12,13 +12,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons'; // Import icon librar
 SplashScreen.preventAutoHideAsync(); // Prevent splash screen from hiding while fonts load
 
 const CenterHome = ({ route }) => {
+    const navigation = useNavigation();
     const [email, setEmail] = useState('');
     const [hasCheckedIn, setHasCheckedIn] = useState(false);
     const [selectedResponses, setSelectedResponses] = useState({});
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const navigation = useNavigation();
 
-    // fonts
     const [fontsLoaded] = useFonts({
         'Outfit-Regular': require('./fonts/Outfit/Outfit-Regular.ttf'),
         'Outfit-Bold': require('./fonts/Outfit/Outfit-Bold.ttf'),

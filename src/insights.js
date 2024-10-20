@@ -5,35 +5,36 @@ import generateExercise from "./generateExercise.js";
 import generateSleep from "./generateSleep.js";
 import {useFonts} from "expo-font";
 import * as SplashScreen from 'expo-splash-screen';
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const Insights = () => {
+    const [fontsLoaded] = useFonts({
+        'Outfit-Regular': require('./fonts/Outfit/Outfit-Regular.ttf'),
+        'Outfit-Bold': require('./fonts/Outfit/Outfit-Bold.ttf'),
+        'Outfit-Black': require('./fonts/Outfit/Outfit-Black.ttf'),
+        'Outfit-Medium': require('./fonts/Outfit/Outfit-Medium.ttf'),
+        'Gabarito-Regular': require('./fonts/Gabarito/Gabarito-Regular.ttf'),
+        'Gabarito-Bold': require('./fonts/Gabarito/Gabarito-Bold.ttf'),
+    });
+
     const [showBox1Text, setShowBox1Text] = useState(false);
     const [showBox2Text, setShowBox2Text] = useState(false);
     const [showBox3Text, setShowBox3Text] = useState(false);
     const [showBox4Text, setShowBox4Text] = useState(false);
-    
     const [exerciseText, setExerciseText] = useState("");
+
+    useEffect(() => {
+        if (fontsLoaded) {
+            SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded]);
+
+    if (!fontsLoaded) {
+        return null;
+    }
 
     // useEffect to fetch the exercise text when the component mounts
     useEffect(() => {
-        const [fontsLoaded] = useFonts({
-            'Outfit-Regular': require('./fonts/Outfit/Outfit-Regular.ttf'),
-            'Outfit-Bold': require('./fonts/Outfit/Outfit-Bold.ttf'),
-            'Outfit-Black': require('./fonts/Outfit/Outfit-Black.ttf'),
-            'Outfit-Medium': require('./fonts/Outfit/Outfit-Medium.ttf'),
-            'Gabarito-Regular': require('./fonts/Gabarito/Gabarito-Regular.ttf'),
-            'Gabarito-Bold': require('./fonts/Gabarito/Gabarito-Bold.ttf'),
-        });
-
-        useEffect(() => {
-            if (fontsLoaded) {
-                SplashScreen.hideAsync();
-            }
-        }, [fontsLoaded]);
-
-        if (!fontsLoaded) {
-            return null;
-        }
         const fetchExerciseText = async () => {
             try {
                 // Call the generateExercise function (assumes generateExercise is correctly imported)
@@ -66,54 +67,57 @@ const Insights = () => {
 
     return (
         <SafeAreaView style={[globalStyles.AndroidSafeArea, styles.container]}>
+            <ScrollView>
+            <Ionicons name="arrow-back-circle-outline" size={40} color="#4f7fa9" style={styles.icon} />
+
             <Text style={styles.welcometext}>Insights</Text>
 
             <View style={styles.boxContainer}>
-                {/*<TouchableOpacity*/}
-                {/*    style={styles.roundedBox}*/}
-                {/*    onPress={() => setShowBox1Text(!showBox1Text)} // Toggle Box 1's text visibility*/}
-                {/*>*/}
-                {/*    <Text style={styles.boxText}>Meditation</Text>*/}
-                {/*    {showBox1Text && <Text style={styles.additionalText}>Meditation tips go here</Text>}*/}
-                {/*</TouchableOpacity>*/}
+
                 <View style={styles.roundedBox}>
                     <Text style={styles.boxText}>Meditation</Text>
                     <Text style={styles.additionalText}>Meditation tips go here</Text>
                 </View>
 
-                <TouchableOpacity
-                    style={styles.roundedBox}
-                    onPress={() => setShowBox2Text(!showBox2Text)} // Toggle Box 2's text visibility
-                >
+                <View style={styles.roundedBox}>
                     <Text style={styles.boxText}>Journaling</Text>
-                    {showBox2Text && <Text style={styles.additionalText}>Journaling tips go here</Text>}
-                </TouchableOpacity>
+                    <Text style={styles.additionalText}>Journaling tips go here</Text>
+                </View>
 
-                <TouchableOpacity
-                    style={styles.roundedBox}
-                    onPress={() => setShowBox3Text(!showBox3Text)} // Toggle Box 3's text visibility
-                >
+                <View style={styles.roundedBox}>
+                    <ScrollView>
                     <Text style={styles.boxText}>Exercise</Text>
-                    {showBox3Text && (
-                        <ScrollView style={styles.scrollContainer}>
-                            <Text style={styles.additionalText}>{exerciseText}</Text>
-                        </ScrollView>
-                    )}
-                </TouchableOpacity>
+                    <Text style={styles.additionalText}>{exerciseText}</Text>
+                    </ScrollView>
+                </View>
 
-                <TouchableOpacity
-                    style={styles.roundedBox}
-                    onPress={() => setShowBox4Text(!showBox4Text)} // Toggle Box 3's text visibility
-                >
-                    <Text style={styles.boxText}>Sleep</Text>
-                    {showBox4Text && (
-                        <ScrollView style={styles.scrollContainer}>
-                            <Text style={styles.additionalText}>{sleepText}</Text>
-                        </ScrollView>
-                    )}
-                </TouchableOpacity>
+                {/*<TouchableOpacity*/}
+                {/*    style={styles.roundedBox}*/}
+                {/*    onPress={() => setShowBox4Text(!showBox4Text)} // Toggle Box 3's text visibility*/}
+                {/*>*/}
+                {/*    <Text style={styles.boxText}>Sleep</Text>*/}
+                {/*    {showBox4Text && (*/}
+                {/*        <ScrollView style={styles.scrollContainer}>*/}
+                {/*            <Text style={styles.additionalText}>{sleepText}</Text>*/}
+                {/*        </ScrollView>*/}
+                {/*    )}*/}
+                {/*</TouchableOpacity>*/}
+                <View style={styles.roundedBox}>
+                    <ScrollView>
+                        <Text style={styles.boxText}>Sleep</Text>
+                        <Text style={styles.additionalText}>{sleepText}</Text>
+                    </ScrollView>
+                </View>
+
+                <View style={styles.roundedBox}>
+                    <ScrollView>
+                        <Text style={styles.boxText}>Sip & Relax</Text>
+                        <Text style={styles.additionalText}>Tea information</Text>
+                    </ScrollView>
+                </View>
 
             </View>
+            </ScrollView>
         </SafeAreaView>
     );
 };
@@ -121,15 +125,23 @@ const Insights = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
+        backgroundColor: '#e8efdd',
         justifyContent: 'flex-start', // Align content to the top
         paddingTop: 20, // To avoid clash with the top area
     },
     welcometext: {
-        fontSize: 28,
+        fontFamily: 'Gabarito-Bold',
+        fontSize: 30,
         fontWeight: 'bold',
-        marginBottom: 10,
+        marginBottom: 20,
+        marginTop: -40,
+        textAlign: 'center',
+    },
+    icon: {
+        width: 40,
+        height: 40,
+        marginTop: '10%',
+        marginLeft: '5%',
     },
     boxContainer: {
         flexDirection: 'column', // Stack boxes vertically
@@ -138,24 +150,26 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
     },
     roundedBox: {
-        width: '95%', // Adjust width as needed
+        width: '100%', // Adjust width as needed
         padding: 20,
         marginBottom: 15,
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#ffffff',
         borderRadius: 15,
         maxHeight: 350, // Ensure the box has a maximum height for scrollability
         overflow: 'hidden', // Hide overflow to make the scrollable content work properly
     },
     boxText: {
-        fontSize: 16,
-        color: '#333',
+        fontSize: 22,
+        color: '#5f8794',
+        fontFamily: 'Gabarito-Bold',
     },
     scrollContainer: {
         maxHeight: 150, // Max height to allow scrolling
     },
     additionalText: {
-        marginTop: 10,
-        fontSize: 14,
+        marginTop: 3,
+        fontSize: 16,
+        fontFamily: 'Outfit-Medium',
         color: '#666',
     },
 });

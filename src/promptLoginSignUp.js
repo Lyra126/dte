@@ -15,7 +15,6 @@ import * as SplashScreen from 'expo-splash-screen';
 
 SplashScreen.preventAutoHideAsync();
 const PromptLoginSignUp = () => {
-    const navigation = useNavigation();
     const [fontsLoaded] = useFonts({
         'Outfit-Regular': require('./fonts/Outfit/Outfit-Regular.ttf'),
         'Outfit-Bold': require('./fonts/Outfit/Outfit-Bold.ttf'),
@@ -24,6 +23,8 @@ const PromptLoginSignUp = () => {
         'Gabarito-Regular': require('./fonts/Gabarito/Gabarito-Regular.ttf'),
         'Gabarito-Bold': require('./fonts/Gabarito/Gabarito-Bold.ttf'),
     });
+
+    const navigation = useNavigation();
 
     useEffect(() => {
         if (fontsLoaded) {

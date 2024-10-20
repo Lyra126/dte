@@ -21,6 +21,10 @@ const Login = ({ onLogin, ...props }) => {
         'Gabarito-Regular': require('./fonts/Gabarito/Gabarito-Regular.ttf'),
         'Gabarito-Bold': require('./fonts/Gabarito/Gabarito-Bold.ttf'),
     });
+    const navigation = useNavigation();
+    const [email,setEmail]=  useState("");
+    const [password,setPassword]=  useState("");
+    const [error, setError] = useState("");
 
     useEffect(() => {
         if (fontsLoaded) {
@@ -32,10 +36,7 @@ const Login = ({ onLogin, ...props }) => {
         return null;
     }
 
-    const navigation = useNavigation();
-    const [email,setEmail]=  useState("");
-    const [password,setPassword]=  useState("");
-    const [error, setError] = useState("");
+
     const handleSignIn = () =>{
         setError("");
            
