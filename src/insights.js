@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { SafeAreaView, Text, TouchableOpacity, StyleSheet, ScrollView, View } from "react-native";
 import globalStyles from './styles/globalStyles.js'; // Assuming you have a global style
 import generateExercise from "./generateExercise.js";
+import generateSleep from "./generateSleep.js";
 
 const Insights = () => {
     const [showBox1Text, setShowBox1Text] = useState(false);
     const [showBox2Text, setShowBox2Text] = useState(false);
     const [showBox3Text, setShowBox3Text] = useState(false);
+    const [showBox4Text, setShowBox4Text] = useState(false);
     
     const [exerciseText, setExerciseText] = useState("");
 
@@ -23,6 +25,23 @@ const Insights = () => {
         };
 
         fetchExerciseText();  // Trigger fetching when component mounts
+    }, []);  // Empty dependency array means it runs only once when the component mounts
+
+    const [sleepText, setSleepText] = useState("");
+
+    // useEffect to fetch the exercise text when the component mounts
+    useEffect(() => {
+        const fetchSleepText = async () => {
+            try {
+                // Call the generateExercise function (assumes generateExercise is correctly imported)
+                const text = await generateSleep("back ache");
+                setSleepText(text);  // Update the state with the text
+            } catch (error) {
+                console.error("Error generating exercise text:", error);
+            }
+        };
+
+        fetchSleepText();  // Trigger fetching when component mounts
     }, []);  // Empty dependency array means it runs only once when the component mounts
 
     return (
@@ -54,6 +73,18 @@ const Insights = () => {
                     {showBox3Text && (
                         <ScrollView style={styles.scrollContainer}>
                             <Text style={styles.additionalText}>{exerciseText}</Text>
+                        </ScrollView>
+                    )}
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={styles.roundedBox}
+                    onPress={() => setShowBox4Text(!showBox4Text)} // Toggle Box 3's text visibility
+                >
+                    <Text style={styles.boxText}>Sleep</Text>
+                    {showBox4Text && (
+                        <ScrollView style={styles.scrollContainer}>
+                            <Text style={styles.additionalText}>{sleepText}</Text>
                         </ScrollView>
                     )}
                 </TouchableOpacity>
