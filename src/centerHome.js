@@ -17,7 +17,6 @@ const CenterHome = ({ route }) => {
     const [hasCheckedIn, setHasCheckedIn] = useState(false);
     const [selectedResponses, setSelectedResponses] = useState({});
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const navigation = useNavigation();
 
     const [fontsLoaded] = useFonts({
         'Outfit-Regular': require('./fonts/Outfit/Outfit-Regular.ttf'),
