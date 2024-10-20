@@ -29,6 +29,36 @@ const CenterHome = ({ route }) => {
     });
 
     useEffect(() => {
+        if (route.params) {
+          const { email } = route.params;
+          setEmail(email);
+          if (email) {
+            saveUserData("email", email);
+            axios.get(`http://192.168.0.5:8080/users/getUser?email=${email}`)
+                .then((response) => {
+                
+                    const userData = response.data;
+                    if (userData) {                        
+                        // setPoints(userData.current_points);
+                        // setName(userData.name);
+                        // setCompostSaved(userData.compost_made);
+                        // setSavedLocations(userData.saved_locations);
+                        // setPoints(userData.current_points);
+                        // setFruitTree(userData.tree_type);
+                    } else {
+                        console.error("User not found or incorrect credentials");
+                    }
+                }) 
+                .catch((error) => {
+                    // Error handling
+                    console.error("Error getting user data:", error);
+                });
+          }
+        }
+      }, [route.params]);
+    
+
+    useEffect(() => {
         if (fontsLoaded) {
             SplashScreen.hideAsync(); // Hide splash screen once fonts are loaded
         }
@@ -41,29 +71,6 @@ const CenterHome = ({ route }) => {
     const saveUserData = async (key, value) => {
         await SecureStore.setItemAsync(key, value);
     };
-
-    // login information
-    useEffect(() => {
-        if (route.params) {
-            const { email } = route.params;
-            setEmail(email);
-            if (email) {
-                saveUserData("email", email);
-                axios.get(`http://192.168.1.159:8080/users/getUser?email=${email}`)
-                    .then((response) => {
-                        const userData = response.data;
-                        if (userData) {
-                            setHasCheckedIn(userData.hasCheckedInToday);
-                        } else {
-                            console.error("User not found or incorrect credentials");
-                        }
-                    })
-                    .catch((error) => {
-                        console.error("Error getting user data:", error);
-                    });
-            }
-        }
-    }, [route.params]);
 
     const completeCheckIn = () => {
         setHasCheckedIn(true);

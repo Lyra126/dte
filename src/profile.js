@@ -7,17 +7,18 @@ import * as SplashScreen from 'expo-splash-screen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
-
+import * as SecureStore from 'expo-secure-store';
+import axios from "axios";
 SplashScreen.preventAutoHideAsync();
 
 const Profile = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [logoutModalVisible, setLogoutModalVisible] = useState(false); // New state for logout confirmation modal
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [location, setLocation] = useState('');
-    const [emerContact1, setEmerContact1] = useState('');
-    const [emerContact2, setEmerContact2] = useState('');
+    const [username, setUserName] = useState("");
+    const [day_of_giving_birth, setDayOfGivingBirth] = useState("");
+    const [emailAddress, setEmailAddress] = useState("");
+    const [location, setLocation] = useState("");
+    const [emergContacts, setEmergContacts] = useState([]);
     const navigation = useNavigation();
 
     const [fontsLoaded] = useFonts({
@@ -28,6 +29,47 @@ const Profile = () => {
         'Gabarito-Regular': require('./fonts/Gabarito/Gabarito-Regular.ttf'),
         'Gabarito-Bold': require('./fonts/Gabarito/Gabarito-Bold.ttf'),
     });
+
+    
+
+    const getUserData = async (key) => {
+        const result = await SecureStore.getItemAsync(key);
+        if (result) {
+            setEmailAddress(result);
+            return result;
+        } else {
+            console.log('No value stored under that key.');
+            return null;
+        }
+    }
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const userEmail = await getUserData("email");
+            if (userEmail) {
+                console.log(userEmail);
+                const response = await axios.get(`http://192.168.0.5:8080/users/getUser?email=${userEmail}`);
+                const userData = response.data;
+                if (userData) {
+                    setUserName(userData.user_name);
+                    setDayOfGivingBirth(userData.day_of_giving_birth);
+                    setEmailAddress(userData.email_address);
+                    setLocation(userData.location);
+                    setEmergContacts(userData.emergency_contacts);
+                } else {
+                    console.error("User not found or incorrect credentials");
+                }
+            }
+          } catch (error) {
+            console.error("Error getting user data:", error);
+          } finally {
+            setLoading(false); // Set loading to false regardless of success or failure
+          }
+        };
+      
+        fetchData();
+      }, []);
 
     const navigateToProfile = () => {
         navigation.navigate("centerHome"); // Use navigation instead of route
@@ -49,11 +91,11 @@ const Profile = () => {
 
     const handleSaveProfile = () => {
         // Handle saving the updated profile information
-        console.log("Name:", name);
-        console.log("Email:", email);
+        console.log("Name:", username);
+        console.log("Email:", emailAddress);
         console.log("Location:", location);
-        console.log("Emergency Contact 1: ", emerContact1);
-        console.log("Emergency Contact 2: ", emerContact2);
+        console.log("Emergency Contact 1: ", emergContacts[0]);
+        console.log("Emergency Contact 2: ", emergContacts[1]);
         setModalVisible(false);
     };
 
@@ -83,27 +125,28 @@ const Profile = () => {
             </View>
             <Image source={require('./assets/babyAndMother.png')} style={styles.image}></Image>
             <View style={styles.userInformation}>
-                <Text style={styles.userInfoName}>User Name Placeholder</Text>
+                <Text style={styles.userInfoName}>{username}</Text>
                 <TouchableOpacity>
                     <Text style={{ marginTop: 5, fontSize: 22, fontFamily: 'Gabarito-Regular', color: '#39647a' }}>Day of giving birth</Text>
+                    <Text style={styles.userInfoText}>{day_of_giving_birth}</Text>
                 </TouchableOpacity>
 
                 {/* email */}
                 <Text style={{ fontFamily: 'Gabarito-Bold', fontSize: 20, marginTop: '5%', color: '#364624' }}>Email</Text>
-                <Text style={styles.userInfoText}>exampleEmail@gmail.com</Text>
+                <Text style={styles.userInfoText}>{emailAddress}</Text>
 
                 {/* locations */}
                 <Text style={{ fontFamily: 'Gabarito-Bold', fontSize: 20, marginTop: '5%', color: '#364624' }}>Location</Text>
-                <Text style={styles.userInfoText}>Gainesville, FL</Text>
+                <Text style={styles.userInfoText}>{location}</Text>
 
                 {/* emergency contacts */}
                 <Text style={{ fontFamily: 'Gabarito-Bold', fontSize: 20, marginTop: '5%', color: '#364624' }}>Emergency Contact Information</Text>
-                <Text style={styles.userInfoText}>Example Contact</Text>
-                <Text style={styles.userInfoText}>123-304-2394</Text>
-                <Text style={[styles.userInfoText, { marginTop: 10 }]}>Example Contact</Text>
+                <Text style={styles.userInfoText}>Contact 1</Text>
+                <Text style={styles.userInfoText}>{emergContacts[0]}</Text>
+                <Text style={[styles.userInfoText, { marginTop: 10 }]}>Contact 2</Text>
 
                 {/* log out button */}
-                <Text style={styles.userInfoText}>123-304-2394</Text>
+                <Text style={styles.userInfoText}>{emergContacts[1]}</Text>
                 <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
                     <Text style={styles.logoutButtonText}> Logout </Text>
                 </TouchableOpacity>
@@ -124,7 +167,7 @@ const Profile = () => {
                         <TextInput
                             placeholder="Enter your name"
                             style={styles.input}
-                            value={name}
+                            value={username}
                             onChangeText={(text) => setName(text)}
                         />
 
@@ -132,7 +175,7 @@ const Profile = () => {
                         <TextInput
                             placeholder="Enter your email"
                             style={styles.input}
-                            value={email}
+                            value={emailAddress}
                             onChangeText={(text) => setEmail(text)}
                         />
 
@@ -148,7 +191,7 @@ const Profile = () => {
                         <TextInput
                             placeholder="Enter 1st emergency contact"
                             style={styles.input}
-                            value={emerContact1}
+                            value={emergContacts[0]}
                             onChangeText={(text) => setEmerContact1(text)}
                         />
 
@@ -156,7 +199,7 @@ const Profile = () => {
                         <TextInput
                             placeholder="Enter 2nd emergency contact"
                             style={styles.input}
-                            value={emerContact2}
+                            value={emergContacts[1]}
                             onChangeText={(text) => setEmerContact2(text)}
                         />
                         <View style={styles.modalButtons}>
