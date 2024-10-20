@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Button, Alert } from 'react-native';
 import { CircularProgress } from 'react-native-circular-progress';
-
-const meditationPhases = [
-  { name: 'Deep Breaths', duration: 4 }, // duration in seconds
-  { name: 'Shallow Breaths', duration: 2 }, // duration in seconds
-  { name: 'Rest', duration: 3 }, // duration in seconds
-];
+import generateMeditation from './geminiAI';
 
 const Meditate = () => {
   const [isPlaying, setIsPlaying] = useState(false);
