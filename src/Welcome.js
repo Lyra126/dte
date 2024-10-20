@@ -55,7 +55,7 @@ const Welcome = () => {
             >
                 <Animated.Image
                     style={{...styles.image }}
-                    // source={require('./assets/babyAndMother.png')}
+                    source={require('./assets/babyAndMother.png')}
                 />
             </Animated.View>
         </SafeAreaView>

@@ -33,6 +33,10 @@ const CenterHome = ({ route }) => {
         }
     }, [fontsLoaded]);
 
+    if (!fontsLoaded) {
+        return null; // Prevent rendering until fonts are loaded
+    }
+
     const saveUserData = async (key, value) => {
         await SecureStore.setItemAsync(key, value);
     };
@@ -149,9 +153,7 @@ const CenterHome = ({ route }) => {
         }
     };
 
-    if (!fontsLoaded) {
-        return null; // Prevent rendering until fonts are loaded
-    }
+
 
     return (
         <SafeAreaView style={[globalStyles.AndroidSafeArea, styles.container]}>
