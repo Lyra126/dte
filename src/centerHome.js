@@ -17,6 +17,7 @@ const CenterHome = ({ route }) => {
     const [hasCheckedIn, setHasCheckedIn] = useState(false);
     const [selectedResponses, setSelectedResponses] = useState({});
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const [day_of_giving_birth, setDayOfGivingBirth] = useState("");
 
     const [fontsLoaded] = useFonts({
         'Outfit-Regular': require('./fonts/Outfit/Outfit-Regular.ttf'),
@@ -38,12 +39,7 @@ const CenterHome = ({ route }) => {
                 
                     const userData = response.data;
                     if (userData) {                        
-                        // setPoints(userData.current_points);
-                        // setName(userData.name);
-                        // setCompostSaved(userData.compost_made);
-                        // setSavedLocations(userData.saved_locations);
-                        // setPoints(userData.current_points);
-                        // setFruitTree(userData.tree_type);
+                        setDayOfGivingBirth(userData.day_of_giving_birth);
                     } else {
                         console.error("User not found or incorrect credentials");
                     }
@@ -99,6 +95,23 @@ const CenterHome = ({ route }) => {
 
     const navigateToProfile = () => {
         navigation.navigate("Profile"); // Use navigation instead of route
+    };
+
+    const getCurrentDate = () => {
+        const now = new Date(); // Get current date and time
+    
+        const months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        // Get individual components
+        const month = String(now.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed, so add 1
+        const day = String(now.getDate()).padStart(2, '0'); // Get day
+        const year = now.getFullYear(); // Get full year
+    
+        // Format date as "MM/DD/YYYY"
+        return `${months[month-1]} ${day}, ${year}`;
     };
 
     // Generating simplified summary
@@ -183,7 +196,7 @@ const CenterHome = ({ route }) => {
                 </View>
                 <View style={styles.todayView}>
                     <View style={[styles.todayViewText]}>
-                        <Text style={{ fontFamily: 'Gabarito-Bold', color: '#FFFFFF', fontSize: 23, fontWeight: 'bold' }}>October 19th, 2024</Text>
+                        <Text style={{ fontFamily: 'Gabarito-Bold', color: '#FFFFFF', fontSize: 23, fontWeight: 'bold' }}>{getCurrentDate()}</Text>
                         <Text style={{ fontFamily: 'Gabarito-Regular',color: '#FFFFFF', fontSize: 18 }}>28 days postpartum</Text>
                         <Text style={{ color: '#FFFFFF', fontSize: 12, marginTop: '3%' }}>You are strong, capable, and doing an amazing job. Be gentle with yourself—you're exactly what your baby needs.</Text>
                     </View>
