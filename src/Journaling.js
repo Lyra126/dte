@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity, Modal, SafeAreaView, ImageBackground, Keyboard, TextInput, Pressable, Alert, Button} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TextInput, ScrollView} from "react-native";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from "@react-navigation/native";
@@ -15,6 +15,8 @@ const Journaling = () => {
     const handleDone = () => {
         Keyboard.dismiss();
     };
+
+    
 
     const handleSubmit = (entry) => {
         const fetchData = async () => {
@@ -34,27 +36,38 @@ const Journaling = () => {
         };
         fetchData();
     };
+
+    const handleKeyPress = (e) => {
+        if (e.nativeEvent.key === "return") {
+            Keyboard.dismiss(); // Dismiss the keyboard when "Enter" is pressed
+        }
+    };
     
     return (
-        <View style={styles.container}>
-            <Text style={styles.header}>[PROMPT]</Text>
+        <ScrollView style={styles.container} keyboardShouldPersistTaps="handled">
+            <View style={styles.container}>
+                <Text style={styles.header}>[PROMPT]</Text>
 
-            <TextInput
-                style={styles.textBox}
-                placeholder="How are you feeling today?"
-                placeholderTextColor="gray"
-                multiline
-                value={text}
-                onChangeText={setText}
-            />
-            <TouchableOpacity style={styles.doneButton} onPress={handleDone}>
-                <Text style={styles.buttonText}>Done</Text>
-            </TouchableOpacity>
+                <TextInput
+                    style={styles.textBox}
+                    placeholder="How are you feeling today?"
+                    placeholderTextColor="gray"
+                    multiline
+                    value={text}
+                    onChangeText={setText}
+                    onKeyPress={handleKeyPress}
+                />
+               
+                
+                <TouchableOpacity style={styles.doneButton} onPress={handleDone}>
+                    <Text style={styles.buttonText}>Done</Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity style={styles.submitButton} onPress={() => handleSubmit(text)}>
-                <Text style={styles.buttonText}>Submit</Text>
-            </TouchableOpacity>
-        </View>
+                <TouchableOpacity style={styles.submitButton} onPress={() => handleSubmit(text)}>
+                    <Text style={styles.buttonText}>Submit</Text>
+                </TouchableOpacity>
+            </View>
+        </ScrollView>
     );
 };
 
