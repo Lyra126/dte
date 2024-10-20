@@ -8,31 +8,9 @@ import Fontisto from "react-native-vector-icons/Fontisto";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import axios from 'axios';
-import {useFonts} from "expo-font";
-import * as SplashScreen from 'expo-splash-screen';
 
 
 const SignUp = ({ onLogin, ...props }) => {
-    const [fontsLoaded] = useFonts({
-        'Outfit-Regular': require('./fonts/Outfit/Outfit-Regular.ttf'),
-        'Outfit-Bold': require('./fonts/Outfit/Outfit-Bold.ttf'),
-        'Outfit-Black': require('./fonts/Outfit/Outfit-Black.ttf'),
-        'Outfit-Medium': require('./fonts/Outfit/Outfit-Medium.ttf'),
-        'Gabarito-Regular': require('./fonts/Gabarito/Gabarito-Regular.ttf'),
-        'Gabarito-Bold': require('./fonts/Gabarito/Gabarito-Bold.ttf'),
-    });
-
-    useEffect(() => {
-        if (fontsLoaded) {
-            SplashScreen.hideAsync();
-        }
-    }, [fontsLoaded]);
-
-    if (!fontsLoaded) {
-        return null;
-    }
-
-
     const navigation = useNavigation();
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
@@ -41,7 +19,7 @@ const SignUp = ({ onLogin, ...props }) => {
     const [errorMessage, setErrorMessage] = useState('');
 
     const handleSubmit = () => {
-        if (!name || !email || !password || !fruitTree) {
+        if (!name || !email || !password) {
             setErrorMessage("All fields are required.");
             return;
         }
@@ -98,8 +76,8 @@ const SignUp = ({ onLogin, ...props }) => {
 
     return (
         <SafeAreaView  style={[globalStyles.AndroidSafeArea, styles.container]}>
-            <TouchableOpacity style={styles.backButton} onPress={() => {navigation.navigate('Login')}}>
-                <Ionicons name="arrow-back-circle-outline" size={50} color="#4f7fa9" style={{marginTop: 15}} />
+            <TouchableOpacity style={styles.backButton} onPress={() => {navigation.navigate('PromptLoginSignUp')}}>
+                <Text style={{fontSize: 37}}> ← </Text>
             </TouchableOpacity>
             <View style = {styles.loginInformation}>
                 <Text style={styles.welcomeBack}>Begin Your Journey</Text>
@@ -172,7 +150,7 @@ const SignUp = ({ onLogin, ...props }) => {
                 <View style={styles.footerView}>
                     <Text style={styles.footerText}>Already have an Account?</Text>
                     <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                        <Text style={[styles.signup,{marginLeft: 3, fontFamily: 'Outfit-Bold'}]}> Login</Text>
+                        <Text style={[styles.signup,{marginLeft: 3}]}> Login</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -191,7 +169,7 @@ const styles = StyleSheet.create({
     },
 
     loginInformation: {
-        backgroundColor: '#efeddd',
+        backgroundColor: '#e8efdd',
         height: '100%',
         borderRadius: 30,
         paddingTop: 50,
@@ -199,15 +177,14 @@ const styles = StyleSheet.create({
         paddingHorizontal: 26
     },
     welcomeBack: {
-        fontFamily: 'Gabarito-Bold',
+
         fontSize: 30,
         fontWeight: 'bold',
-        marginBottom: 5,
+        marginBottom: 15,
     },
     welcomeText: {
-        fontFamily: 'Outfit-Regular',
         color: 'grey',
-        fontSize: 17,
+        fontSize: 16,
 
     },
     image : {
@@ -215,10 +192,10 @@ const styles = StyleSheet.create({
         width : 170
     },
     inputView : {
-        marginTop: 30,
+        marginTop: 50,
         gap : 18,
         width : "100%",
-        marginBottom: 30
+        marginBottom: 20
     },
     inputSection: {
         flexDirection: 'row',
@@ -232,11 +209,8 @@ const styles = StyleSheet.create({
         height : 50,
         width : "80%",
         paddingHorizontal : 20,
-        fontSize: 15,
         backgroundColor: "#FFFFF7FF",
-        borderRadius: 20,
-        fontFamily: 'Outfit-Regular',
-
+        borderRadius: 20
     },
     button : {
         backgroundColor : "#77aac5",
@@ -249,9 +223,7 @@ const styles = StyleSheet.create({
     buttonText : {
         color : "white"  ,
         fontSize: 18,
-        fontWeight : "bold",
-        fontFamily: 'Gabarito-Bold',
-
+        fontWeight : "bold"
     },
     buttonView :{
         width :"100%",
@@ -261,10 +233,7 @@ const styles = StyleSheet.create({
         color : "gray",
         fontSize : 13,
         marginVertical: 30,
-        flexDirection: 'row',
-        fontFamily: 'Outfit-Regular',
-
-
+        flexDirection: 'row'
     },
     mediaIcons : {
         flexDirection : "row",
@@ -289,14 +258,13 @@ const styles = StyleSheet.create({
     footerText : {
         textAlign: "center",
         color : "gray",
-        fontFamily: 'Outfit-Regular',
     },
     signup : {
         color : "#4f7a8c",
         textAlign: "center",
         fontWeight : "bold",
 
-    },
+    }, 
     title: {
         fontSize: 15,
         marginBottom: 10,
