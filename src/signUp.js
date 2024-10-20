@@ -7,6 +7,8 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { useFonts } from "expo-font";
+import * as SplashScreen from 'expo-splash-screen';
 import axios from 'axios';
 
 
@@ -17,6 +19,26 @@ const SignUp = ({ onLogin, ...props }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+
+    const [fontsLoaded] = useFonts({
+        'Outfit-Regular': require('./fonts/Outfit/Outfit-Regular.ttf'),
+        'Outfit-Bold': require('./fonts/Outfit/Outfit-Bold.ttf'),
+        'Outfit-Black': require('./fonts/Outfit/Outfit-Black.ttf'),
+        'Outfit-Medium': require('./fonts/Outfit/Outfit-Medium.ttf'),
+        'Gabarito-Regular': require('./fonts/Gabarito/Gabarito-Regular.ttf'),
+        'Gabarito-Bold': require('./fonts/Gabarito/Gabarito-Bold.ttf'),
+    });
+
+    useEffect(() => {
+        if (fontsLoaded) {
+            SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded]);
+
+    if (!fontsLoaded) {
+        return null;
+    }
+
 
     const handleSubmit = () => {
         if (!name || !email || !password) {
@@ -177,14 +199,15 @@ const styles = StyleSheet.create({
         paddingHorizontal: 26
     },
     welcomeBack: {
-
+        fontFamily: 'Gabarito-Bold',
         fontSize: 30,
         fontWeight: 'bold',
-        marginBottom: 15,
+        marginBottom: 5,
     },
     welcomeText: {
         color: 'grey',
-        fontSize: 16,
+        fontSize: 17,
+        fontFamily: 'Outfit-Regular',
 
     },
     image : {
@@ -192,17 +215,20 @@ const styles = StyleSheet.create({
         width : 170
     },
     inputView : {
-        marginTop: 50,
+        marginTop: 30,
         gap : 18,
         width : "100%",
-        marginBottom: 20
+        marginBottom: 30,
+
     },
     inputSection: {
+        fontFamily: 'Outfit-Regular',
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: '#fffff7',
         borderRadius: 20,
+        fontSize: 15,
         paddingHorizontal: 20,
     },
     input: {
@@ -210,7 +236,8 @@ const styles = StyleSheet.create({
         width : "80%",
         paddingHorizontal : 20,
         backgroundColor: "#FFFFF7FF",
-        borderRadius: 20
+        borderRadius: 20,
+        fontFamily: 'Outfit-Regular',
     },
     button : {
         backgroundColor : "#77aac5",
@@ -223,7 +250,9 @@ const styles = StyleSheet.create({
     buttonText : {
         color : "white"  ,
         fontSize: 18,
-        fontWeight : "bold"
+        flexDirection: 'row',
+        fontWeight : "bold",
+        fontFamily: 'Gabarito-Bold',
     },
     buttonView :{
         width :"100%",
@@ -258,6 +287,7 @@ const styles = StyleSheet.create({
     footerText : {
         textAlign: "center",
         color : "gray",
+        fontFamily: 'Outfit-Regular',
     },
     signup : {
         color : "#4f7a8c",

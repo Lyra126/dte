@@ -49,11 +49,10 @@ const Profile = () => {
             const userEmail = await getUserData("email");
             if (userEmail) {
                 console.log(userEmail);
-                const response = await axios.get(`http://192.168.0.5:8080/users/getUser?email=${userEmail}`);
+                const response = await axios.get(`http://192.168.0.38:8082/users/getUser?email=${userEmail}`);
                 const userData = response.data;
                 if (userData) {
                     setUserName(userData.user_name);
-                    setDayOfGivingBirth(userData.day_of_giving_birth);
                     setEmailAddress(userData.email_address);
                     setLocation(userData.location);
                     setEmergContacts(userData.emergency_contacts);
@@ -114,9 +113,6 @@ const Profile = () => {
     return (
         <SafeAreaView style={[globalStyles.AndroidSafeArea, styles.container]}>
             <View style={{ display: "flex", flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: '5%' }}>
-                <TouchableOpacity onPress={() => { navigation.navigate('CenterHome') }}>
-                    <Ionicons name="arrow-back-circle-outline" size={40} color="#4f7fa9" style={styles.icon} />
-                </TouchableOpacity>
                 <TouchableOpacity onPress={handleEditProfile}>
                     <Text style={{ color: 'grey', marginTop: '15%', marginLeft: '5%', fontSize: 15, fontFamily: 'Gabarito-Regular' }}>
                         <MaterialCommunityIcons name='lead-pencil' size={18} /> Edit Profile
@@ -126,10 +122,6 @@ const Profile = () => {
             <Image source={require('./assets/babyAndMother.png')} style={styles.image}></Image>
             <View style={styles.userInformation}>
                 <Text style={styles.userInfoName}>{username}</Text>
-                <TouchableOpacity>
-                    <Text style={{ marginTop: 5, fontSize: 22, fontFamily: 'Gabarito-Regular', color: '#39647a' }}>Day of giving birth</Text>
-                    <Text style={styles.userInfoText}>{day_of_giving_birth}</Text>
-                </TouchableOpacity>
 
                 {/* email */}
                 <Text style={{ fontFamily: 'Gabarito-Bold', fontSize: 20, marginTop: '5%', color: '#364624' }}>Email</Text>
@@ -141,12 +133,12 @@ const Profile = () => {
 
                 {/* emergency contacts */}
                 <Text style={{ fontFamily: 'Gabarito-Bold', fontSize: 20, marginTop: '5%', color: '#364624' }}>Emergency Contact Information</Text>
-                <Text style={styles.userInfoText}>Contact 1</Text>
-                <Text style={styles.userInfoText}>{emergContacts[0]}</Text>
+                <Text style={styles.userInfoText}>Contact One</Text>
+                {/*<Text style={styles.userInfoText}>{emergContacts[0]}</Text>*/}
                 <Text style={[styles.userInfoText, { marginTop: 10 }]}>Contact 2</Text>
 
                 {/* log out button */}
-                <Text style={styles.userInfoText}>{emergContacts[1]}</Text>
+                {/*<Text style={styles.userInfoText}>{emergContacts[1]}</Text>*/}
                 <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
                     <Text style={styles.logoutButtonText}> Logout </Text>
                 </TouchableOpacity>

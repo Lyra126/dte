@@ -13,6 +13,7 @@ SplashScreen.preventAutoHideAsync(); // Prevent splash screen from hiding while 
 
 const CenterHome = ({ route }) => {
     const navigation = useNavigation();
+    const [userName, setUserName] = useState("User");
     const [email, setEmail] = useState('');
     const [hasCheckedIn, setHasCheckedIn] = useState(false);
     const [selectedResponses, setSelectedResponses] = useState({});
@@ -34,12 +35,13 @@ const CenterHome = ({ route }) => {
           setEmail(email);
           if (email) {
             saveUserData("email", email);
-            axios.get(`http://192.168.0.5:8080/users/getUser?email=${email}`)
+            axios.get(`http://192.168.0.38:8082/users/getUser?email=${email}`)
                 .then((response) => {
                 
                     const userData = response.data;
                     if (userData) {                        
-                        setDayOfGivingBirth(userData.day_of_giving_birth);
+                        setUserName(userData.name);
+                        console.log(userData.name);
                     } else {
                         console.error("User not found or incorrect credentials");
                     }
@@ -185,7 +187,7 @@ const CenterHome = ({ route }) => {
                 <View style={styles.headerView}>
                     <View style={styles.textContainer}>
                         <Text style={{fontFamily: 'Gabarito-Regular', fontSize: 18}}>Welcome Back</Text>
-                        <Text style={{fontSize: 30, fontWeight: 'bold', fontFamily: 'Gabarito-Bold' }}>Testing User</Text>
+                        <Text style={{fontSize: 30, fontWeight: 'bold', fontFamily: 'Gabarito-Bold' }}>{userName}</Text>
                     </View>
                     <TouchableOpacity onPress={navigateToProfile}>
                         <Image

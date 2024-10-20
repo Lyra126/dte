@@ -159,8 +159,8 @@ const styles = StyleSheet.create({
 
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'center',    // Center the buttons horizontally in the container
-    alignItems: 'center',        // Align buttons vertically in the container
+    justifyContent: 'center',    
+    alignItems: 'center',       
   },
 
   buttonText: {
