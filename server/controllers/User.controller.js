@@ -64,11 +64,24 @@ const getUserByEmail = async (req, res) => {
     }
 };
 
+const getAllEntries = async (req, res) => {
+    try {
+        const entries = await UserModel.find({}, 'entries');
+        res.json(entries);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch entries' });
+    }
+};
+
+
+
+
 
 export{
     getAllUsers,
     createUser,
     getUserById,
     getUserByEmailAndPassword,
-    getUserByEmail
+    getUserByEmail,
+    getAllEntries
 }
