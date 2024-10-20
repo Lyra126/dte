@@ -73,6 +73,26 @@ const getAllEntries = async (req, res) => {
     }
 };
 
+const addNewEntry = async (req, res) => {
+    try {
+        const { email, entry } = req.body; // Use req.body to access JSON data
+        const user = await UserModel.findOne({ email_address: email });
+
+        // Log incoming request for debugging
+        console.log("Received request body:", { email, entry });
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        user.entries.push(entry); // Make sure to push the entry, not address
+        await user.save();
+
+        res.json({ message: 'Entry saved successfully', entries: user.entries }); // Return the updated entries
+    } catch (error) {
+        console.error("Error saving entry:", error);
+        res.status(500).json({ error: 'Failed to add entry' });
+    }
+};
 
 
 
@@ -83,5 +103,6 @@ export{
     getUserById,
     getUserByEmailAndPassword,
     getUserByEmail,
-    getAllEntries
+    getAllEntries,
+    addNewEntry
 }

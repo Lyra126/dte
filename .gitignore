@@ -3,3 +3,5 @@
 .expo/packager-info.json
 /.expo
 /node_modules
+.package-lock.json
+.package.json
