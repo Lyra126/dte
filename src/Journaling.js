@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TextInput, ScrollView} from "react-native";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -6,11 +6,28 @@ import {useNavigation} from "@react-navigation/native";
 import globalStyles from "./styles/globalStyles";
 import Fontisto from "react-native-vector-icons/Fontisto"
 import axios from 'axios';
+import generateJournal from './generateJournal';
 
 const Journaling = () => {
     const navigation = useNavigation();
     const [text, setText] = useState('');
     const [tag, setTag] = useState('');
+    const [journalText, setJournalText] = useState("");
+
+    // useEffect to fetch the exercise text when the component mounts
+    useEffect(() => {
+        const fetchJournalText = async () => {
+            try {
+                // Call the generateExercise function (assumes generateExercise is correctly imported)
+                const text = await generateJournal("feeling sad and tired");
+                setJournalText(text);  // Update the state with the text
+            } catch (error) {
+                console.error("Error generating exercise text:", error);
+            }
+        };
+
+        fetchJournalText();  // Trigger fetching when component mounts
+    }, []);  // Empty dependency array means it runs only once when the component mounts
 
     const handleDone = () => {
         Keyboard.dismiss();
@@ -46,7 +63,7 @@ const Journaling = () => {
     return (
         <ScrollView style={styles.container} keyboardShouldPersistTaps="handled">
             <View style={styles.container}>
-                <Text style={styles.header}>[PROMPT]</Text>
+                <Text style={styles.header}>{journalText}</Text>
 
                 <TextInput
                     style={styles.textBox}

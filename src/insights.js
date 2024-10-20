@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, Text, TouchableOpacity, StyleSheet, ScrollView, View } from "react-native";
 import globalStyles from './styles/globalStyles.js'; // Assuming you have a global style
-import generateExercise from "./geminiAI.js";
+import generateExercise from "./generateExercise.js";
 
 const Insights = () => {
     const [showBox1Text, setShowBox1Text] = useState(false);

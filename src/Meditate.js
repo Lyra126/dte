@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Button, Alert } from 'react-native';
 import { CircularProgress } from 'react-native-circular-progress';
-import GenerateMeditation from "./GenerateMeditation";
+import generateMeditation from "./generateMeditation";
 
 const defaultMeditationPhases = [
     { name: 'Deep Breaths', duration: 4 }, // duration in seconds
@@ -22,7 +22,8 @@ const Meditate = () => {
     console.log("Fetching meditation phases");
     const fetchMeditationPhases = async () => {
       try {
-        const phases = await GenerateMeditation('stressed'); // Assuming generateMeditation is async
+        const phases = await generateMeditation('stressed'); // Assuming generateMeditation is async
+        console.log(phases);
         setMeditationPhases(phases); 
       } catch (error) {
         console.error("Error fetching meditation phases:", error);
