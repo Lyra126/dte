@@ -6,6 +6,7 @@ import CenterHome from "./src/centerHome";
 import Journaling from "./src/Journaling.js";
 import Meditate from "./src/Meditate.js";
 import Profile from "./src/profile.js";
+import insights from "./src/insights.js";
 
 
 const Tab = createBottomTabNavigator();
@@ -17,6 +18,7 @@ function TabGroup(){
             <Tab.Screen name="Journaling" component={Journaling}/>
             <Tab.Screen name="Meditation" component={Meditate}/>
             <Tab.Screen name="Profile" component={Profile}/>
+            <Tab.Screen name="Insights" component={insights}/>
         </Tab.Navigator>
     )
 }
