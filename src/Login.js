@@ -9,9 +9,28 @@ import axios from 'axios';
 import Navigation from "../Navigation"
 import Config from 'react-native-config';
 import Ionicons from "react-native-vector-icons/Ionicons";
+import {useFonts} from "expo-font";
+import * as SplashScreen from 'expo-splash-screen';
 
 const Login = ({ onLogin, ...props }) => {
+    const [fontsLoaded] = useFonts({
+        'Outfit-Regular': require('./fonts/Outfit/Outfit-Regular.ttf'),
+        'Outfit-Bold': require('./fonts/Outfit/Outfit-Bold.ttf'),
+        'Outfit-Black': require('./fonts/Outfit/Outfit-Black.ttf'),
+        'Outfit-Medium': require('./fonts/Outfit/Outfit-Medium.ttf'),
+        'Gabarito-Regular': require('./fonts/Gabarito/Gabarito-Regular.ttf'),
+        'Gabarito-Bold': require('./fonts/Gabarito/Gabarito-Bold.ttf'),
+    });
 
+    useEffect(() => {
+        if (fontsLoaded) {
+            SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded]);
+
+    if (!fontsLoaded) {
+        return null;
+    }
 
     const navigation = useNavigation();
     const [email,setEmail]=  useState("");
@@ -150,12 +169,14 @@ const styles = StyleSheet.create({
         paddingHorizontal: 26
     },
     welcomeBack: {
+        fontFamily: 'Gabarito-Bold',
         fontSize: 30,
         fontWeight: 'bold',
-        marginBottom: 15,
+        marginBottom: 5,
     },
     welcomeText: {
-        fontSize: 16,
+        fontFamily: 'Outfit-Regular',
+        fontSize: 17,
         color: 'gray',
     },
     image : {
@@ -163,7 +184,7 @@ const styles = StyleSheet.create({
         width : 170
     },
     inputView : {
-        marginTop: 50,
+        marginTop: 20,
         gap : 18,
         width : "100%",
         marginBottom: 7
@@ -180,8 +201,10 @@ const styles = StyleSheet.create({
         height : 50,
         width : "80%",
         paddingHorizontal : 20,
-        backgroundColor: "#fffff7",
-        borderRadius: 20
+        fontSize: 15,
+        backgroundColor: "#FFFFF7FF",
+        borderRadius: 20,
+        fontFamily: 'Outfit-Regular',
     },
     forgotPasswordView : {
         marginTop: 10,
@@ -189,8 +212,9 @@ const styles = StyleSheet.create({
         marginLeft: 10
     },
     forgetText : {
-        fontSize : 13,
-        color : "#335727"
+        fontSize : 14.5,
+        color : "#335727",
+        fontFamily: 'Outfit-Regular',
     },
     button : {
         backgroundColor : "#96c08e",
@@ -203,7 +227,8 @@ const styles = StyleSheet.create({
     buttonText : {
         color : "white"  ,
         fontSize: 18,
-        fontWeight : "bold"
+        fontWeight : "bold",
+        fontFamily: 'Gabarito-Bold',
     },
     buttonView :{
         width :"100%",
@@ -236,6 +261,7 @@ const styles = StyleSheet.create({
         marginVertical: 20,
     },
     footerText : {
+        fontFamily: 'Outfit-Regular',
         textAlign: "center",
         color : "gray",
     },
@@ -243,6 +269,7 @@ const styles = StyleSheet.create({
         color : "#517083",
         textAlign: "center",
         fontWeight : "bold",
+        fontFamily: 'Outfit-Bold',
     },
     errorText: {
         color: 'red',

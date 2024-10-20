@@ -3,6 +3,8 @@ import { SafeAreaView, Text, TouchableOpacity, StyleSheet, ScrollView, View } fr
 import globalStyles from './styles/globalStyles.js'; // Assuming you have a global style
 import generateExercise from "./generateExercise.js";
 import generateSleep from "./generateSleep.js";
+import {useFonts} from "expo-font";
+import * as SplashScreen from 'expo-splash-screen';
 
 const Insights = () => {
     const [showBox1Text, setShowBox1Text] = useState(false);
@@ -14,6 +16,24 @@ const Insights = () => {
 
     // useEffect to fetch the exercise text when the component mounts
     useEffect(() => {
+        const [fontsLoaded] = useFonts({
+            'Outfit-Regular': require('./fonts/Outfit/Outfit-Regular.ttf'),
+            'Outfit-Bold': require('./fonts/Outfit/Outfit-Bold.ttf'),
+            'Outfit-Black': require('./fonts/Outfit/Outfit-Black.ttf'),
+            'Outfit-Medium': require('./fonts/Outfit/Outfit-Medium.ttf'),
+            'Gabarito-Regular': require('./fonts/Gabarito/Gabarito-Regular.ttf'),
+            'Gabarito-Bold': require('./fonts/Gabarito/Gabarito-Bold.ttf'),
+        });
+
+        useEffect(() => {
+            if (fontsLoaded) {
+                SplashScreen.hideAsync();
+            }
+        }, [fontsLoaded]);
+
+        if (!fontsLoaded) {
+            return null;
+        }
         const fetchExerciseText = async () => {
             try {
                 // Call the generateExercise function (assumes generateExercise is correctly imported)
@@ -49,13 +69,17 @@ const Insights = () => {
             <Text style={styles.welcometext}>Insights</Text>
 
             <View style={styles.boxContainer}>
-                <TouchableOpacity
-                    style={styles.roundedBox}
-                    onPress={() => setShowBox1Text(!showBox1Text)} // Toggle Box 1's text visibility
-                >
+                {/*<TouchableOpacity*/}
+                {/*    style={styles.roundedBox}*/}
+                {/*    onPress={() => setShowBox1Text(!showBox1Text)} // Toggle Box 1's text visibility*/}
+                {/*>*/}
+                {/*    <Text style={styles.boxText}>Meditation</Text>*/}
+                {/*    {showBox1Text && <Text style={styles.additionalText}>Meditation tips go here</Text>}*/}
+                {/*</TouchableOpacity>*/}
+                <View style={styles.roundedBox}>
                     <Text style={styles.boxText}>Meditation</Text>
-                    {showBox1Text && <Text style={styles.additionalText}>Meditation tips go here</Text>}
-                </TouchableOpacity>
+                    <Text style={styles.additionalText}>Meditation tips go here</Text>
+                </View>
 
                 <TouchableOpacity
                     style={styles.roundedBox}
@@ -88,6 +112,7 @@ const Insights = () => {
                         </ScrollView>
                     )}
                 </TouchableOpacity>
+
             </View>
         </SafeAreaView>
     );
@@ -113,18 +138,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
     },
     roundedBox: {
-        width: '90%', // Adjust width as needed
+        width: '95%', // Adjust width as needed
         padding: 20,
         marginBottom: 15,
         backgroundColor: '#f0f0f0',
         borderRadius: 15,
-        alignItems: 'center',
-        justifyContent: 'center',
-        shadowColor: '#000', 
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 5,
-        elevation: 3, // For Android shadow
         maxHeight: 350, // Ensure the box has a maximum height for scrollability
         overflow: 'hidden', // Hide overflow to make the scrollable content work properly
     },

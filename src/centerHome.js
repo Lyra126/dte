@@ -220,12 +220,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         justifyContent: 'flex-start',
         flexDirection: 'column',
-        shadowColor: "#837356",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
+
         marginRight: 15,
         marginLeft: 15,
     },
@@ -239,12 +234,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         flexDirection: 'column',
         height: '150px',
-        shadowColor: "#2c8591",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
+
         marginRight: 15,
         marginLeft: 15,
         paddingHorizontal: 10,
