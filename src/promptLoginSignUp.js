@@ -7,13 +7,33 @@ import {
     TouchableOpacity,
     SafeAreaView,
 } from "react-native";
+import { useEffect } from "react";
 import globalStyles from './styles/globalStyles.js';
 import { useNavigation } from '@react-navigation/native';
+import { useFonts } from "expo-font";
+import * as SplashScreen from 'expo-splash-screen';
 
-
+SplashScreen.preventAutoHideAsync();
 const PromptLoginSignUp = () => {
     const navigation = useNavigation();
+    const [fontsLoaded] = useFonts({
+        'Outfit-Regular': require('./fonts/Outfit/Outfit-Regular.ttf'),
+        'Outfit-Bold': require('./fonts/Outfit/Outfit-Bold.ttf'),
+        'Outfit-Black': require('./fonts/Outfit/Outfit-Black.ttf'),
+        'Outfit-Medium': require('./fonts/Outfit/Outfit-Medium.ttf'),
+        'Gabarito-Regular': require('./fonts/Gabarito/Gabarito-Regular.ttf'),
+        'Gabarito-Bold': require('./fonts/Gabarito/Gabarito-Bold.ttf'),
+    });
 
+    useEffect(() => {
+        if (fontsLoaded) {
+            SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded]);
+
+    if (!fontsLoaded) {
+        return null;
+    }
     return (
         <SafeAreaView style={[globalStyles.AndroidSafeArea, styles.container]}>
             <Image source={require('./assets/babyAndMother.png')} style={styles.image}></Image>
@@ -41,19 +61,22 @@ const styles = StyleSheet.create({
         marginTop: '30%',
     },
     welcometext: {
-        fontSize: 20,
+        fontFamily: 'Gabarito-Bold',
+        fontSize: 30,
         textAlign: 'center',
         fontWeight: 'bold',
         marginLeft: 40,
-        marginRight: 40
+        marginRight: 40,
+        marginTop: 20
     },
     text:{
-        fontSize: 16,
-        marginLeft: 40,
-        marginRight: 40,
+        fontFamily: 'Outfit-Regular',
+        fontSize: 18,
+        marginLeft: 20,
+        marginRight: 20,
         color: 'grey',
         textAlign: 'center',
-        marginVertical: 20,
+        marginVertical: 5,
     },
     loginButton: {
         backgroundColor: '#78bbd9',
@@ -75,11 +98,15 @@ const styles = StyleSheet.create({
         color: 'white',
         textAlign: 'center',
         fontWeight: 'bold',
+        fontFamily: 'Outfit-Medium',
+        fontSize: 18,
     },
     signUpText:{
         color: 'black',
         textAlign: 'center',
         fontWeight: 'bold',
+        fontFamily: 'Outfit-Medium',
+        fontSize: 18,
     }
 });
 

@@ -8,26 +8,37 @@ import Fontisto from "react-native-vector-icons/Fontisto";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import axios from 'axios';
+import {useFonts} from "expo-font";
+import * as SplashScreen from 'expo-splash-screen';
 
 
 const SignUp = ({ onLogin, ...props }) => {
+    const [fontsLoaded] = useFonts({
+        'Outfit-Regular': require('./fonts/Outfit/Outfit-Regular.ttf'),
+        'Outfit-Bold': require('./fonts/Outfit/Outfit-Bold.ttf'),
+        'Outfit-Black': require('./fonts/Outfit/Outfit-Black.ttf'),
+        'Outfit-Medium': require('./fonts/Outfit/Outfit-Medium.ttf'),
+        'Gabarito-Regular': require('./fonts/Gabarito/Gabarito-Regular.ttf'),
+        'Gabarito-Bold': require('./fonts/Gabarito/Gabarito-Bold.ttf'),
+    });
+
+    useEffect(() => {
+        if (fontsLoaded) {
+            SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded]);
+
+    if (!fontsLoaded) {
+        return null;
+    }
+
+
     const navigation = useNavigation();
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-    const [fruitTree, setFruitTree] = useState('');
-    const [selectedTree, setSelectedTree] = useState(0);
-
-    const handleTreeSelection = (treeType) => {
-        setFruitTree(treeType);
-        setSelectedTree(treeType);
-    };
-
-    const isTreeSelected = (treeType) => {
-        return selectedTree === treeType;
-    };
 
     const handleSubmit = () => {
         if (!name || !email || !password || !fruitTree) {
@@ -48,7 +59,6 @@ const SignUp = ({ onLogin, ...props }) => {
                     console.log("user doesn't exist");
                     // User not found, create a new user
                     axios.post('http://10.136.227.124:8080/users/createUser', {
-                        tree_type: fruitTree,
                         email_address: email,
                         name: name,
                         username: name,
@@ -69,7 +79,6 @@ const SignUp = ({ onLogin, ...props }) => {
                 console.log("user doesn't exist");
                     // User not found, create a new user
                     axios.post('http://192.168.1.159:8080/users/createUser', {
-                        tree_type: fruitTree,
                         email_address: email,
                         name: username,
                         username: username,
@@ -89,8 +98,8 @@ const SignUp = ({ onLogin, ...props }) => {
 
     return (
         <SafeAreaView  style={[globalStyles.AndroidSafeArea, styles.container]}>
-            <TouchableOpacity style={styles.backButton} onPress={() => {navigation.navigate('PromptLoginSignUp')}}>
-                <Text style={{fontSize: 37}}> ← </Text>
+            <TouchableOpacity style={styles.backButton} onPress={() => {navigation.navigate('Login')}}>
+                <Ionicons name="arrow-back-circle-outline" size={50} color="#4f7fa9" style={{marginTop: 15}} />
             </TouchableOpacity>
             <View style = {styles.loginInformation}>
                 <Text style={styles.welcomeBack}>Begin Your Journey</Text>
@@ -163,7 +172,7 @@ const SignUp = ({ onLogin, ...props }) => {
                 <View style={styles.footerView}>
                     <Text style={styles.footerText}>Already have an Account?</Text>
                     <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                        <Text style={[styles.signup,{marginLeft: 3}]}> Login</Text>
+                        <Text style={[styles.signup,{marginLeft: 3, fontFamily: 'Outfit-Bold'}]}> Login</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -182,7 +191,7 @@ const styles = StyleSheet.create({
     },
 
     loginInformation: {
-        backgroundColor: '#e8efdd',
+        backgroundColor: '#efeddd',
         height: '100%',
         borderRadius: 30,
         paddingTop: 50,
@@ -190,14 +199,15 @@ const styles = StyleSheet.create({
         paddingHorizontal: 26
     },
     welcomeBack: {
-
+        fontFamily: 'Gabarito-Bold',
         fontSize: 30,
         fontWeight: 'bold',
-        marginBottom: 15,
+        marginBottom: 5,
     },
     welcomeText: {
+        fontFamily: 'Outfit-Regular',
         color: 'grey',
-        fontSize: 16,
+        fontSize: 17,
 
     },
     image : {
@@ -205,10 +215,10 @@ const styles = StyleSheet.create({
         width : 170
     },
     inputView : {
-        marginTop: 50,
+        marginTop: 30,
         gap : 18,
         width : "100%",
-        marginBottom: 20
+        marginBottom: 30
     },
     inputSection: {
         flexDirection: 'row',
@@ -222,8 +232,11 @@ const styles = StyleSheet.create({
         height : 50,
         width : "80%",
         paddingHorizontal : 20,
+        fontSize: 15,
         backgroundColor: "#FFFFF7FF",
-        borderRadius: 20
+        borderRadius: 20,
+        fontFamily: 'Outfit-Regular',
+
     },
     button : {
         backgroundColor : "#77aac5",
@@ -236,7 +249,9 @@ const styles = StyleSheet.create({
     buttonText : {
         color : "white"  ,
         fontSize: 18,
-        fontWeight : "bold"
+        fontWeight : "bold",
+        fontFamily: 'Gabarito-Bold',
+
     },
     buttonView :{
         width :"100%",
@@ -246,7 +261,10 @@ const styles = StyleSheet.create({
         color : "gray",
         fontSize : 13,
         marginVertical: 30,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        fontFamily: 'Outfit-Regular',
+
+
     },
     mediaIcons : {
         flexDirection : "row",
@@ -271,17 +289,13 @@ const styles = StyleSheet.create({
     footerText : {
         textAlign: "center",
         color : "gray",
+        fontFamily: 'Outfit-Regular',
     },
     signup : {
         color : "#4f7a8c",
         textAlign: "center",
         fontWeight : "bold",
 
-    }, 
-    chooseTreeContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     title: {
         fontSize: 15,

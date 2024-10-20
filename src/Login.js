@@ -8,8 +8,11 @@ import Fontisto from "react-native-vector-icons/Fontisto";
 import axios from 'axios'; 
 import Navigation from "../Navigation"
 import Config from 'react-native-config';
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const Login = ({ onLogin, ...props }) => {
+
+
     const navigation = useNavigation();
     const [email,setEmail]=  useState("");
     const [password,setPassword]=  useState("");
@@ -53,7 +56,7 @@ const Login = ({ onLogin, ...props }) => {
     return (
         <SafeAreaView  style={[globalStyles.AndroidSafeArea, styles.container]}>
             <TouchableOpacity style={styles.backButton} onPress={() => {navigation.navigate('PromptLoginSignUp')}}>
-                <Text style={{fontSize: 37}}> ← </Text>
+                <Ionicons name="arrow-back-circle-outline" size={50} color="#335727" style={{marginTop: 15}} />
             </TouchableOpacity>
             <View style = {styles.loginInformation}>
             <Text style={styles.welcomeBack}>Welcome Back! </Text>
@@ -132,7 +135,7 @@ const Login = ({ onLogin, ...props }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#8ec5e0',
+        backgroundColor: '#99c587',
         padding: 40,
     },
     backButton: {
