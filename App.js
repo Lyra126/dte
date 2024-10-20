@@ -67,27 +67,30 @@ const App = () => {
 
 export default App;
 
-// App.js
+
 // import React from 'react';
 // import { NavigationContainer } from "@react-navigation/native";
 // import { createStackNavigator } from "@react-navigation/stack";
 // import { StyleSheet, Text, View, Button } from 'react-native';
 // import Meditate from './src/Meditate.js'; // Import the Meditate screen
 // import Journaling from './src/Journaling.js'; // Import the Journaling screen
-//
+// import centerHome from './src/centerHome.js'; // Import the Journaling screen
+
 // const Stack = createStackNavigator();
-//
+
 // const App = () => {
 //   return (
 //     <NavigationContainer>
 //       {/* <Stack.Navigator initialRouteName="Meditate" screenOptions={{ headerShown: false }}>
 //         <Stack.Screen name="Meditate" component={Meditate} /> */}
 //         <Stack.Navigator initialRouteName="Meditate" screenOptions={{ headerShown: false }}>
-//         <Stack.Screen name="Meditate" component={Meditate} />
+//         <Stack.Screen name="centerHome" component={centerHome} />
 //       </Stack.Navigator>
 //     </NavigationContainer>
 //   );
 // };
-//
-//
+
+
 // export default App;
+
+

@@ -18,6 +18,7 @@ const Profile = () => {
     const [location, setLocation] = useState('');
     const [emerContact1, setEmerContact1] = useState('');
     const [emerContact2, setEmerContact2] = useState('');
+    const navigation = useNavigation();
 
     const [fontsLoaded] = useFonts({
         'Outfit-Regular': require('./fonts/Outfit/Outfit-Regular.ttf'),
@@ -27,6 +28,10 @@ const Profile = () => {
         'Gabarito-Regular': require('./fonts/Gabarito/Gabarito-Regular.ttf'),
         'Gabarito-Bold': require('./fonts/Gabarito/Gabarito-Bold.ttf'),
     });
+
+    const navigateToProfile = () => {
+        navigation.navigate("centerHome"); // Use navigation instead of route
+    };
 
     useEffect(() => {
         if (fontsLoaded) {

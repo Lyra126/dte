@@ -16,6 +16,7 @@ const CenterHome = ({ route }) => {
     const [hasCheckedIn, setHasCheckedIn] = useState(false);
     const [selectedResponses, setSelectedResponses] = useState({});
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const navigation = useNavigation();
 
     // fonts
     const [fontsLoaded] = useFonts({
@@ -88,6 +89,10 @@ const CenterHome = ({ route }) => {
         } else {
             completeCheckIn();
         }
+    };
+
+    const navigateToProfile = () => {
+        navigation.navigate("Profile"); // Use navigation instead of route
     };
 
     // Generating simplified summary
@@ -163,10 +168,12 @@ const CenterHome = ({ route }) => {
                         <Text style={{fontFamily: 'Gabarito-Regular', fontSize: 18}}>Welcome Back</Text>
                         <Text style={{fontSize: 30, fontWeight: 'bold', fontFamily: 'Gabarito-Bold' }}>Testing User</Text>
                     </View>
-                    <Image
-                        source={require('./assets/earthDay.gif')}
-                        style={styles.profileImage}
-                    />
+                    <TouchableOpacity onPress={navigateToProfile}>
+                        <Image
+                            source={require('./assets/earthDay.gif')}
+                            style={styles.profileImage}
+                        />
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.todayView}>
                     <View style={[styles.todayViewText]}>
