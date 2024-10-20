@@ -1,13 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Button, Alert } from 'react-native';
 import { CircularProgress } from 'react-native-circular-progress';
-import generateMeditation from './geminiAI';
+import GenerateMeditation from "./GenerateMeditation";
 
+const defaultMeditationPhases = [
+    { name: 'Deep Breaths', duration: 4 }, // duration in seconds
+    { name: 'Shallow Breaths', duration: 2 }, // duration in seconds
+    { name: 'Rest', duration: 3 }, // duration in seconds
+  ];
 const Meditate = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentPhase, setCurrentPhase] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(meditationPhases[currentPhase]?.duration || 0);
+
   const [elapsedTime, setElapsedTime] = useState(0); // Track elapsed time
+
+  const [meditationPhases, setMeditationPhases] = useState(defaultMeditationPhases); // Store meditation phases
+  const [timeLeft, setTimeLeft] = useState(meditationPhases[currentPhase]?.duration || 0);
+
+  // Fetch meditation phases asynchronously when the component mounts
+  useEffect(() => {
+    console.log("Fetching meditation phases");
+    const fetchMeditationPhases = async () => {
+      try {
+        const phases = await GenerateMeditation('stressed'); // Assuming generateMeditation is async
+        setMeditationPhases(phases); 
+      } catch (error) {
+        console.error("Error fetching meditation phases:", error);
+      }
+    };
+
+    fetchMeditationPhases();
+  }, []); // Only run this once when the component mounts
 
   useEffect(() => {
     let timer;

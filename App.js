@@ -83,7 +83,7 @@ const App = () => {
       {/* <Stack.Navigator initialRouteName="Meditate" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Meditate" component={Meditate} /> */}
         <Stack.Navigator initialRouteName="Journaling" screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Journaling" component={Journaling} />
+        <Stack.Screen name="Meditate" component={Meditate} />
       </Stack.Navigator>
     </NavigationContainer>
   );
