@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Button, Alert } from 'react-native';
+import { StyleSheet, View, Text, Button, Alert, TouchableOpacity } from 'react-native';
 import { CircularProgress } from 'react-native-circular-progress';
 import generateMeditation from "./generateMeditation";
 
@@ -82,17 +82,23 @@ const Meditate = () => {
     <View style={styles.container}>
       <Text style={styles.title}>{meditationPhases[currentPhase]?.name}</Text>
       <CircularProgress
-        size={200}
-        width={15}
+        size={250}
+        width={20}
         fill={((elapsedTime) / meditationPhases[currentPhase]?.duration) * 100} // Fill calculation based on elapsed time
         rotation={-90}
-        tintColor="#00e0ff"
-        backgroundColor="#3d5875"
+        tintColor="#a7c5a3"
+        backgroundColor="lightgray"
+        lineCap="round"
+
       />
       <Text style={styles.timerText}>{timeLeft}s</Text>
       <View style={styles.buttonContainer}>
-        <Button title={isPlaying ? 'Pause' : 'Play'} onPress={handlePlayPause} />
-        <Button title="Reset" onPress={resetMeditation} />
+        <TouchableOpacity style={styles.playPauseButton} onPress={handlePlayPause}>
+          <Text style={styles.buttonText}>{isPlaying ? 'Pause' : 'Play'}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.resetButton} onPress={resetMeditation}>
+          <Text style={styles.buttonText}>Reset</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -103,23 +109,64 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#e8efdd',
+    padding: 20,
   },
+
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
+    fontSize: 26,
+    fontWeight: '600',
+    color: '#374d36',
+    marginBottom: 50,
+    textAlign: 'center',
   },
+  
   timerText: {
-    fontSize: 24,
+    fontSize: 48,
     fontWeight: 'bold',
-    color: '#333',
-    marginVertical: 20,
+    color: '#94b9bf',
+    marginVertical: 30,
   },
+
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '60%',
+    width: '80%',
+    marginTop: 40,
+  },
+
+  playPauseButton: {
+    backgroundColor: '#94b9bf',
+    paddingVertical: 15,
+    paddingHorizontal: 40,
+    borderRadius: 30,
+    marginHorizontal: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 150,
+  },
+
+  resetButton: {
+    backgroundColor: '#a7c5a3',
+    paddingVertical: 15,
+    paddingHorizontal: 40,
+    borderRadius: 30,
+    marginHorizontal: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 150,
+  },
+
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',    // Center the buttons horizontally in the container
+    alignItems: 'center',        // Align buttons vertically in the container
+  },
+
+  buttonText: {
+    color: '#374d36',
+    fontSize: 18,
+    fontWeight: '500',
   },
 });
 

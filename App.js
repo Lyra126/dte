@@ -81,10 +81,10 @@ export default App;
 // const App = () => {
 //   return (
 //     <NavigationContainer>
-//       {/* <Stack.Navigator initialRouteName="Meditate" screenOptions={{ headerShown: false }}>
+//       <Stack.Navigator initialRouteName="Journaling" screenOptions={{ headerShown: false }}>
+//         <Stack.Screen name="Journaling" component={Journaling} />
+//         {/* <Stack.Navigator initialRouteName="Meditate" screenOptions={{ headerShown: false }}>
 //         <Stack.Screen name="Meditate" component={Meditate} /> */}
-//         <Stack.Navigator initialRouteName="Meditate" screenOptions={{ headerShown: false }}>
-//         <Stack.Screen name="centerHome" component={centerHome} />
 //       </Stack.Navigator>
 //     </NavigationContainer>
 //   );

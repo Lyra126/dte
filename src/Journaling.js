@@ -8,6 +8,7 @@ const Journaling = () => {
     const navigation = useNavigation();
     const [text, setText] = useState('');
     const [entries, setEntries] = useState([]); 
+    const [journalText, setJournalText] = useState("");
     
     useEffect(() => {
         const fetchJournalText = async () => {
@@ -70,7 +71,7 @@ const Journaling = () => {
             <TextInput
                 style={styles.textBox}
                 placeholder="How are you feeling today?"
-                placeholderTextColor="#e8efdd"
+                placeholderTextColor="#94b9bf"
                 multiline
                 value={text}
                 onChangeText={setText}
@@ -96,8 +97,6 @@ const Journaling = () => {
 };
 
 
-
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -109,20 +108,22 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center',
-        marginTop: 70,
+        color: '#4a637d',
+        marginBottom: 15,
+        marginTop: 60,
+
     },
 
     textBox: {
-        height: 250, 
+        height: 200,
         borderColor: '#94b9bf',
-        borderWidth: 1,
+        borderWidth: 2,
         borderRadius: 10,
         padding: 15,
-        textAlignVertical: 'top',
         fontSize: 16,
-        color: '#e8efdd',
-        marginVertical: 30,
-        backgroundColor: '#94b9bf',
+        color: '#94b9bf',
+        marginVertical: 10,
+        backgroundColor: '#ffffff',
     },
 
     doneButton: {
@@ -130,26 +131,31 @@ const styles = StyleSheet.create({
         padding: 15,
         borderRadius: 10,
         alignItems: 'center',
-        marginTop: -20, 
+        marginTop: 10,
+        
     },
 
     submitButton: {
-        backgroundColor: '#a7c5a3',
+        backgroundColor: '#94b9bf',
         padding: 15,
         borderRadius: 10,
         alignItems: 'center',
-        marginVertical: 10, 
+        marginVertical: 10,
+        
     },
 
     buttonText: {
         fontSize: 16,
-        color: '#374d36',
+        fontWeight: '700',
+        color: '#ffffff',
     },
 
     entriesHeader: {
         fontSize: 18,
         fontWeight: 'bold',
+        color: '#4a637d',
         marginTop: 20,
+        marginBottom: 10,
     },
 
     entriesList: {
@@ -159,18 +165,17 @@ const styles = StyleSheet.create({
     entryBox: {
         padding: 15,
         marginVertical: 5,
-        backgroundColor: '#94b9bf',
-        borderRadius: 5,
+        backgroundColor: '#ffffff',
+        borderRadius: 10,
         borderColor: '#94b9bf',
         borderWidth: 1,
     },
 
     entryText: {
         fontSize: 16,
-        color: '#e8efdd',
+        color: '#374d36',
     },
 });
-
 
 export default Journaling;
 
