@@ -138,23 +138,21 @@ const styles = StyleSheet.create({
   playPauseButton: {
     backgroundColor: '#94b9bf',
     paddingVertical: 15,
-    paddingHorizontal: 40,
-    borderRadius: 30,
+    borderRadius: 10,
     marginHorizontal: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 150,
+    width: 120,
   },
 
   resetButton: {
     backgroundColor: '#a7c5a3',
     paddingVertical: 15,
-    paddingHorizontal: 40,
-    borderRadius: 30,
+    borderRadius: 10,
     marginHorizontal: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 150,
+    width: 120,
   },
 
   buttonContainer: {
@@ -164,9 +162,9 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
-    color: '#374d36',
-    fontSize: 18,
-    fontWeight: '500',
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '700',
   },
 });
 

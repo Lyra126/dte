@@ -36,7 +36,7 @@ const Journaling = () => {
             if (userEmail) {
                 try {
                     console.log("Sending request with:", { userEmail, entry });
-                    const response = await axios.post(`http://10.2.105.28:8080/users/addNewEntry`, {
+                    const response = await axios.post(`http://10.2.105.28:8081/users/addNewEntry`, {
                         email: userEmail,
                         entry: entry
                     });
@@ -77,6 +77,7 @@ const Journaling = () => {
                 onChangeText={setText}
             />
 
+            <View style={styles.buttonContainer}>
             <TouchableOpacity style={styles.doneButton} onPress={handleDone}>
                 <Text style={styles.buttonText}>Done</Text>
             </TouchableOpacity>
@@ -84,6 +85,7 @@ const Journaling = () => {
             <TouchableOpacity style={styles.submitButton} onPress={() => handleSubmit(text)}>
                 <Text style={styles.buttonText}>Submit</Text>
             </TouchableOpacity>
+            </View>
 
             <Text style={styles.entriesHeader}>Previous Entries:</Text>
             <FlatList
@@ -109,13 +111,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         color: '#4a637d',
-        marginBottom: 15,
+        marginBottom: 5,
         marginTop: 60,
 
     },
 
     textBox: {
-        height: 200,
+        height: 180,
         borderColor: '#94b9bf',
         borderWidth: 2,
         borderRadius: 10,
@@ -127,28 +129,32 @@ const styles = StyleSheet.create({
     },
 
     doneButton: {
-        backgroundColor: '#a7c5a3',
-        padding: 15,
-        borderRadius: 10,
-        alignItems: 'center',
-        marginTop: 10,
-        
-    },
-
-    submitButton: {
         backgroundColor: '#94b9bf',
         padding: 15,
         borderRadius: 10,
         alignItems: 'center',
-        marginVertical: 10,
-        
+        width: 100,
+    },
+
+    submitButton: {
+        backgroundColor: '#a7c5a3',
+        padding: 15,
+        borderRadius: 10,
+        alignItems: 'center',
+        width: 100,
+    },
+
+    buttonContainer: {
+        flexDirection: 'row',      
+        justifyContent: 'space-between', 
+        marginTop: 10,              
     },
 
     buttonText: {
+        color: '#fff',
         fontSize: 16,
         fontWeight: '700',
-        color: '#ffffff',
-    },
+      },
 
     entriesHeader: {
         fontSize: 18,
@@ -168,12 +174,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
         borderRadius: 10,
         borderColor: '#94b9bf',
-        borderWidth: 1,
+        borderWidth: 2,
     },
 
     entryText: {
         fontSize: 16,
-        color: '#374d36',
+        color: '#94b9bf',
     },
 });
 

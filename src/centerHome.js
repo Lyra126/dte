@@ -35,7 +35,7 @@ const CenterHome = ({ route }) => {
           setEmail(email);
           if (email) {
             saveUserData("email", email);
-            axios.get(`http://192.168.0.38:8082/users/getUser?email=${email}`)
+            axios.get(`http://10.2.105.28:8081/users/getUser?email=${email}`)
                 .then((response) => {
                 
                     const userData = response.data;
