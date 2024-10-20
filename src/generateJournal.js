@@ -9,7 +9,7 @@ export async function generateJournal(prompt) {
     // For text-only input, use the gemini-pro model
     const model = genAI.getGenerativeModel({ model: "gemini-pro"});
     
-    const request = "Use information: " + prompt + " to suggest a helpful journaling prompt in the context of postpartum. Limit to 30 words.";
+    const request = "Use information: " + Object.values(prompt) + " to suggest a helpful journaling prompt in the context of postpartum. Limit to 30 words.";
     
     const result = await model.generateContent(request);
     const response = await result.response;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Button, Alert, TouchableOpacity } from 'react-native';
 import { CircularProgress } from 'react-native-circular-progress';
 import generateMeditation from "./generateMeditation";
+import { useGlobal } from './context/global.js';
 
 const defaultMeditationPhases = [
     { name: 'Deep Breaths', duration: 4 }, // duration in seconds
@@ -9,6 +10,8 @@ const defaultMeditationPhases = [
     { name: 'Rest', duration: 3 }, // duration in seconds
   ];
 const Meditate = () => {
+  const { globalState } = useGlobal();
+  const { selectedResponses } = globalState; // Access selectedResponses
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentPhase, setCurrentPhase] = useState(0);
 
@@ -22,7 +25,7 @@ const Meditate = () => {
     console.log("Fetching meditation phases");
     const fetchMeditationPhases = async () => {
       try {
-        const phases = await generateMeditation('stressed'); // Assuming generateMeditation is async
+        const phases = await generateMeditation(selectedResponses); // Assuming generateMeditation is async
         console.log(phases);
         setMeditationPhases(phases); 
       } catch (error) {

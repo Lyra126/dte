@@ -40,7 +40,7 @@ const Login = ({ onLogin, ...props }) => {
     const handleSignIn = () =>{
         setError("");
            
-        axios.get(`http://10.2.105.28:8081/users/getUser?email=${email}`)
+        axios.get(`http://10.189.114.235:8081/users/getUser?email=${email}`)
         .then((response) => {
             const userData = response.data;
             if (userData) {

@@ -8,6 +8,7 @@ import checkInQuiz from './checkInQuiz.json';
 import { useFonts } from "expo-font";
 import * as SplashScreen from 'expo-splash-screen';
 import Ionicons from 'react-native-vector-icons/Ionicons'; // Import icon library
+import { useGlobal } from './context/global.js';
 
 SplashScreen.preventAutoHideAsync(); // Prevent splash screen from hiding while fonts load
 
@@ -16,9 +17,11 @@ const CenterHome = ({ route }) => {
     const [userName, setUserName] = useState("User");
     const [email, setEmail] = useState('');
     const [hasCheckedIn, setHasCheckedIn] = useState(false);
-    const [selectedResponses, setSelectedResponses] = useState({});
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [day_of_giving_birth, setDayOfGivingBirth] = useState("");
+    const { globalState, setGlobalState } = useGlobal();
+
+    const { selectedResponses } = globalState; // Accessing selectedResponses from global state
 
     const [fontsLoaded] = useFonts({
         'Outfit-Regular': require('./fonts/Outfit/Outfit-Regular.ttf'),
@@ -35,7 +38,7 @@ const CenterHome = ({ route }) => {
           setEmail(email);
           if (email) {
             saveUserData("email", email);
-            axios.get(`http://10.2.105.28:8081/users/getUser?email=${email}`)
+            axios.get(`http://10.189.114.235:8081/users/getUser?email=${email}`)
                 .then((response) => {
                 
                     const userData = response.data;
@@ -74,19 +77,25 @@ const CenterHome = ({ route }) => {
         console.log("User Responses: ", selectedResponses);
     };
 
-    // reseting check in
+    // Resetting check-in
     const resetCheckIn = () => {
         setHasCheckedIn(false);
-        setSelectedResponses({});
+        setGlobalState((prevState) => ({
+            ...prevState,
+            selectedResponses: {}, // Resetting global selected responses
+        }));
         setCurrentQuestionIndex(0);
         console.log("Check-In reset.");
     };
 
-    // options for quiz
+    // Handling option select for quiz
     const handleOptionSelect = (questionId, response) => {
-        setSelectedResponses(prevState => ({
+        setGlobalState((prevState) => ({
             ...prevState,
-            [questionId]: response
+            selectedResponses: {
+                ...prevState.selectedResponses,
+                [questionId]: response,
+            },
         }));
         if (currentQuestionIndex < checkInQuiz.questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -136,7 +145,7 @@ const CenterHome = ({ route }) => {
         );
     };
 
-    // rendering check in content
+    // Rendering check-in content
     const renderCheckInContent = () => {
         if (hasCheckedIn) {
             return (
@@ -178,7 +187,6 @@ const CenterHome = ({ route }) => {
             );
         }
     };
-
 
 
     return (

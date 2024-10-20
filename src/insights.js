@@ -3,11 +3,17 @@ import { SafeAreaView, Text, TouchableOpacity, StyleSheet, ScrollView, View } fr
 import globalStyles from './styles/globalStyles.js'; // Assuming you have a global style
 import generateExercise from "./generateExercise.js";
 import generateSleep from "./generateSleep.js";
+import generateTea from "./generateTea.js";
+import generateJournal from "./generateJournal.js";
+import generateMeditation from "./generateMeditation.js";
 import {useFonts} from "expo-font";
 import * as SplashScreen from 'expo-splash-screen';
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { useGlobal } from './context/global.js';
 
 const Insights = () => {
+    const { globalState } = useGlobal();
+    const { selectedResponses } = globalState; // Access selectedResponses
     const [fontsLoaded] = useFonts({
         'Outfit-Regular': require('./fonts/Outfit/Outfit-Regular.ttf'),
         'Outfit-Bold': require('./fonts/Outfit/Outfit-Bold.ttf'),
@@ -38,7 +44,7 @@ const Insights = () => {
         const fetchExerciseText = async () => {
             try {
                 // Call the generateExercise function (assumes generateExercise is correctly imported)
-                const text = await generateExercise("back ache");
+                const text = await generateExercise(selectedResponses);
                 setExerciseText(text);  // Update the state with the text
             } catch (error) {
                 console.error("Error generating exercise text:", error);
@@ -55,7 +61,7 @@ const Insights = () => {
         const fetchSleepText = async () => {
             try {
                 // Call the generateExercise function (assumes generateExercise is correctly imported)
-                const text = await generateSleep("back ache");
+                const text = await generateSleep(selectedResponses);
                 setSleepText(text);  // Update the state with the text
             } catch (error) {
                 console.error("Error generating exercise text:", error);
@@ -63,6 +69,60 @@ const Insights = () => {
         };
 
         fetchSleepText();  // Trigger fetching when component mounts
+    }, []);  // Empty dependency array means it runs only once when the component mounts
+
+    const [teaText, setTeaText] = useState("");
+
+    // useEffect to fetch the exercise text when the component mounts
+    useEffect(() => {
+        const fetchTeaText = async () => {
+            try {
+                // Call the generateExercise function (assumes generateExercise is correctly imported)
+                const text = await generateTea(selectedResponses);
+                setTeaText(text);  // Update the state with the text
+            } catch (error) {
+                console.error("Error generating exercise text:", error);
+            }
+        };
+
+        fetchTeaText();  // Trigger fetching when component mounts
+    }, []);  // Empty dependency array means it runs only once when the component mounts
+
+    const [journalText, setJournalText] = useState("");
+
+    // useEffect to fetch the exercise text when the component mounts
+    useEffect(() => {
+        const fetchJournalText = async () => {
+            try {
+                // Call the generateExercise function (assumes generateExercise is correctly imported)
+                const text = await generateJournal(selectedResponses);
+                setJournalText(text);  // Update the state with the text
+            } catch (error) {
+                console.error("Error generating exercise text:", error);
+            }
+        };
+
+        fetchJournalText();  // Trigger fetching when component mounts
+    }, []);  // Empty dependency array means it runs only once when the component mounts
+
+    const [meditationText, setMeditationText] = useState("");
+
+    // useEffect to fetch the exercise text when the component mounts
+    useEffect(() => {
+        const fetchMeditationText = async () => {
+            try {
+                // Call the generateExercise function (assumes generateExercise is correctly imported)
+                const text = await generateMeditation(selectedResponses);
+                const formattedString = text.map(item => {
+                    return `${item.name}: ${item.duration} seconds`;
+                  }).join(', '); // If there are multiple items, this will join them with a comma
+                setMeditationText(formattedString);  // Update the state with the text
+            } catch (error) {
+                console.error("Error generating exercise text:", error);
+            }
+        };
+
+        fetchMeditationText();  // Trigger fetching when component mounts
     }, []);  // Empty dependency array means it runs only once when the component mounts
 
     return (
@@ -76,12 +136,12 @@ const Insights = () => {
 
                 <View style={styles.roundedBox}>
                     <Text style={styles.boxText}>Meditation</Text>
-                    <Text style={styles.additionalText}>Meditation tips go here</Text>
+                    <Text style={styles.additionalText}>{meditationText}</Text>
                 </View>
 
                 <View style={styles.roundedBox}>
-                    <Text style={styles.boxText}>Journaling</Text>
-                    <Text style={styles.additionalText}>Journaling tips go here</Text>
+                    <Text style={styles.boxText}>Journaling Prompt</Text>
+                    <Text style={styles.additionalText}>{journalText}</Text>
                 </View>
 
                 <View style={styles.roundedBox}>
@@ -91,17 +151,6 @@ const Insights = () => {
                     </ScrollView>
                 </View>
 
-                {/*<TouchableOpacity*/}
-                {/*    style={styles.roundedBox}*/}
-                {/*    onPress={() => setShowBox4Text(!showBox4Text)} // Toggle Box 3's text visibility*/}
-                {/*>*/}
-                {/*    <Text style={styles.boxText}>Sleep</Text>*/}
-                {/*    {showBox4Text && (*/}
-                {/*        <ScrollView style={styles.scrollContainer}>*/}
-                {/*            <Text style={styles.additionalText}>{sleepText}</Text>*/}
-                {/*        </ScrollView>*/}
-                {/*    )}*/}
-                {/*</TouchableOpacity>*/}
                 <View style={styles.roundedBox}>
                     <ScrollView>
                         <Text style={styles.boxText}>Sleep</Text>
@@ -112,7 +161,7 @@ const Insights = () => {
                 <View style={styles.roundedBox}>
                     <ScrollView>
                         <Text style={styles.boxText}>Sip & Relax</Text>
-                        <Text style={styles.additionalText}>Tea information</Text>
+                        <Text style={styles.additionalText}>{teaText}</Text>
                     </ScrollView>
                 </View>
 

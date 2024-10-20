@@ -1,6 +1,6 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-async function generateExercise(prompt) {
+async function generateTea(prompt) {
     //const dotenv = require("dotenv");
     //dotenv.config();
     const API_KEY = 'AIzaSyCpjgXeQKRUNwEJHBWUTNN_WJcxIlyuZsA';
@@ -9,7 +9,7 @@ async function generateExercise(prompt) {
     // For text-only input, use the gemini-pro model
     const model = genAI.getGenerativeModel({ model: "gemini-pro"});
     
-    const request = "Use information: " + Object.values(prompt) + " to suggest a exercises in the context of postpartum";
+    const request = "Use information about how the user is feeling: " + Object.values(prompt) + " to suggest helpful tea options in the context of postpartum.";
     
     const result = await model.generateContent(request);
     const response = await result.response;
@@ -17,4 +17,4 @@ async function generateExercise(prompt) {
     return text;
   }
   
-  export default generateExercise
+  export default generateTea

@@ -3,8 +3,11 @@ import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TextInput, Alert, F
 import {useNavigation} from "@react-navigation/native";
 import axios from 'axios';
 import generateJournal from './generateJournal';
+import { useGlobal } from './context/global.js';
 
 const Journaling = () => {
+    const { globalState } = useGlobal();
+    const { selectedResponses } = globalState; // Access selectedResponses
     const navigation = useNavigation();
     const [text, setText] = useState('');
     const [entries, setEntries] = useState([]); 
@@ -14,7 +17,7 @@ const Journaling = () => {
         const fetchJournalText = async () => {
             try {
                 // Call the generateExercise function (assumes generateExercise is correctly imported)
-                const text = await generateJournal("feeling sad and tired");
+                const text = await generateJournal(selectedResponses);
                 setJournalText(text);  // Update the state with the text
             } catch (error) {
                 console.error("Error generating exercise text:", error);

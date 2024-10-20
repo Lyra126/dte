@@ -9,7 +9,7 @@ async function generateMeditation(prompt) {
   // For text-only input, use the gemini-pro model
   const model = genAI.getGenerativeModel({ model: "gemini-pro"});
   
-  const request = "Use information: " + prompt + " to suggest meditation routine in the context of postpartum. It must be set in this format with no astericks: 'name: Deep Breathing, duration: 12, name: Body Scan, duration: 18, name: Loving-Kindness Meditation, duration: 18' Replace the name and duration contents. Duration must be below 30";
+  const request = "Use information: " + Object.values(prompt) + " to suggest meditation routine in the context of postpartum. It must be set in this format with no astericks: 'name: Deep Breathing, duration: 12, name: Body Scan, duration: 18, name: Loving-Kindness Meditation, duration: 18' Replace the name and duration contents. Duration must be below 30";
   
   const result = await model.generateContent(request);
   const response = await result.response;
@@ -26,7 +26,7 @@ async function generateMeditation(prompt) {
       duration: durationPart
     };
   });
-  //console.log(exercises);
+  console.log(Object.values(prompt));
   return exercises;
 }
 

@@ -9,7 +9,7 @@ async function generateSleep(prompt) {
     // For text-only input, use the gemini-pro model
     const model = genAI.getGenerativeModel({ model: "gemini-pro"});
     
-    const request = "Use information: " + prompt + " to suggest help for sleeping in the context of postpartum.";
+    const request = "Use information: " + Object.values(prompt) + " to suggest sleeping tips in the context of postpartum. If there is no mention of sleeping itself, simply respond based on best sleeping habits.";
     
     const result = await model.generateContent(request);
     const response = await result.response;
