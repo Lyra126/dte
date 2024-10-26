@@ -39,7 +39,7 @@ const Journaling = () => {
             if (userEmail) {
                 try {
                     console.log("Sending request with:", { userEmail, entry });
-                    const response = await axios.post(`http://10.2.105.28:8081/users/addNewEntry`, {
+                    const response = await axios.post(`http://[...]:8081/users/addNewEntry`, {
                         email: userEmail,
                         entry: entry
                     });
